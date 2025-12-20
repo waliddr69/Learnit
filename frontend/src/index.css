@@ -1,0 +1,223 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import "tailwindcss";
+
+
+:root {
+  --primary-color: linear-gradient(90deg, #006efd 0%, #1f1cd9 100%);
+  --secondary-color: #e33d2b;
+  --heading1-color: #0c2443;
+  --heading2-color: #10305a;
+  --subheading-color: #394658;
+}
+
+@font-face {
+  font-family: "Lyons";
+  src: url("./assets/fonts/lyons-serif/Lyons\ Serif\ Bold.ttf")
+    format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PPFrama";
+  src: url("./assets/fonts/otf/PPFrama-Regular.otf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PPFrama";
+  src: url("./assets/fonts/otf/PPFrama-Black.otf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+.heading1 {
+  font-family: "Lyons", serif;
+  font-weight: bold;
+  color: var(--heading1-color);
+}
+.subheading {
+  font-family: "PPFrama", "Poppins", sans-serif;
+  font-weight: regular;
+  color: var(--subheading-color);
+}
+
+body,
+html,
+#root {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+@layer base {
+  body {
+    font-family: "Poppins", sans-serif;
+  }
+}
+
+.squircle {
+  border-radius: 24px;
+}
+
+.cta {
+  background-image: var(--primary-color);
+  color: white;
+ 
+  border: none;
+  cursor: pointer;
+  font-family: "PPFrama", "Poppins", sans-serif;
+  
+  letter-spacing: 1rem;
+  font-weight: bolder;
+  letter-spacing: 2px;transition: all 0.3s ease-in-out;
+}
+
+.cta:hover {
+  
+  background-image: linear-gradient(#69a9ff, #69a9ff);
+  outline: 3px black solid;
+  color: black;
+  
+}
+
+.sec {
+  border:3px solid var(--secondary-color);
+  color: black;
+ 
+ 
+  cursor: pointer;
+  font-family: "PPFrama", "Poppins", sans-serif;
+
+  letter-spacing: 1rem;
+  font-weight: bolder;
+  letter-spacing: 2px;transition: all 0.3s ease-in-out
+}
+
+.sec:hover{
+  background-color: #EAF2FF;
+  border: 3px black solid;
+  
+}
+
+.subheading{
+    font-family: "PPFrama", "Poppins", sans-serif;
+    font-weight: regular;
+    color: var(--subheading-color);
+    text-align: center;
+    width: 50%;
+}
+
+h5{
+  font-size: 1.44rem;
+}
+h4{
+  font-size:1.728rem;
+}
+h6{
+  font-size:1.2rem;
+}
+
+h1{
+  font-size: 2.986rem;
+  font-family: "Lyons", "Poppins", sans-serif;
+}
+
+
+h2{
+  font-size: 2.488rem;
+  font-family: "Lyons", "Poppins", sans-serif;
+  color: var(--heading1-color);
+}
+
+@media (max-width:768px) {
+  h1{
+    font-size: 2.488rem;
+  }
+  
+}
+@media (min-width:642px) and (max-width:768px) {
+  h1{
+    font-size: 2rem;
+  }
+  
+}
+
+@media (min-width:320px) and (max-width:642px) {
+  h1{
+    font-size: 1.5rem;
+  }
+  
+}
+@media (min-width:642px) and (max-width:768px) {
+  h1{
+    font-size: 2rem;
+  }
+  
+}
+
+@media (min-width:320px) and (max-width:642px) {
+  h1{
+    font-size: 1.5rem;
+  }
+  
+}
+
+@media (max-width:1020px) and (min-width:768px) {
+  .subheading{
+    font-size: 0.8rem;
+    margin-top: 8px;
+  }
+  
+}
+@media (max-width:768px) {
+  .subheading{
+    font-size: 0.6rem;
+    margin-top: 8px;
+  }
+  
+}
+
+@media (max-width:768px) {
+  h2{
+    font-size: 2rem;
+  }
+  
+}
+@media (min-width:642px) and (max-width:768px) {
+  h2{
+    font-size: 1.6rem;
+  }
+  
+}
+
+@media (min-width:320px) and (max-width:642px) {
+  h2{
+    font-size: 1.2rem;
+  }
+  
+}
+@media (min-width:642px) and (max-width:768px) {
+  h2{
+    font-size: 2rem;
+  }
+  
+}
+
+@media (min-width:320px) and (max-width:642px) {
+  h2{
+    font-size: 1.5rem;
+  }
+  
+}
+
+
+
+
+

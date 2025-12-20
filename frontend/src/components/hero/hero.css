@@ -1,0 +1,17 @@
+.typed{
+    background-image: linear-gradient(90deg, #006efd 0%, #1f1cd9 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+}
+.typed div{
+    background-image: linear-gradient(90deg, #006efd 0%, #1f1cd9 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+}
+
+
+

@@ -1,0 +1,174 @@
+header{
+    height: 25%;
+    
+    
+    position: relative;
+    z-index: 50;
+    background-color: white;
+
+}
+.wrapper{
+    width: 100%;
+    height: 100px;
+    padding: 10px 25px;
+    gap: 60px;
+}
+nav{
+    height: 50px;
+}
+nav ul{
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    height:100%;
+}
+nav li{
+    max-width: fit-content;
+    
+}
+nav li a{
+    font-family: "PPFrama" , "Poppins" , sans-serif;
+    font-weight: 300;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out, outline 0.2s ease-in-out;
+}
+
+nav li a:hover:not(.dropdown){
+    font-family: "PPFrama" , "Poppins" , sans-serif;
+    font-weight: 900;
+    cursor: pointer;
+    color: #2A7AE2;
+    outline: #A0BADC solid 1px;
+    outline-offset: 8px;
+    border-radius: 24px;
+    
+}
+
+nav ul li:nth-child(3) {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding:4px
+}
+
+nav ul li:nth-child(3):hover {
+
+    background-color: #bad8ff;
+    border-radius:24px;
+    cursor:pointer;
+   
+}
+nav ul li:nth-child(3):hover  a{
+    
+    font-weight: 900;
+}
+nav ul li:nth-child(3) svg{
+    transform:rotate(0deg);
+    transition:all 0.2s ease-in-out
+}
+nav ul li:nth-child(3):hover svg{
+    transform:rotate(180deg);
+    
+}
+.menu-open nav ul li:nth-child(3) svg{
+    transform:rotate(180deg);
+    
+}
+.menu-open nav ul li:nth-child(3) a{
+    font-weight: 900;
+}
+.menu-open nav ul li:nth-child(3) {
+
+    background-color: #bad8ff;
+    border-radius:24px;
+    cursor:pointer;
+   
+}
+
+.btns{
+    
+    display:flex;
+    
+    gap:16px;
+}
+.ham{
+    cursor: pointer;
+    align-self: center;
+    padding: 4px;
+    
+    border-radius: 24px;
+    transition: all 0.3s ease-in-out;
+}
+.main-btn{
+    box-shadow: 12px 8px 16px rgba(0,0,0,0.25)  ;
+    
+}
+
+.learn-head{
+    color:var(--heading1-color);
+}
+
+.learn-subhead{
+    color:var(--heading2-color)
+}
+
+.bg-image{
+    width: 300px;
+    height: 200px;
+    background-image: url('../../assets/images/use_pc.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 24px;
+}
+.learn{
+    position: absolute;
+    bottom: 0;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 60;
+    background-color: white;
+    
+    
+    transition: all 0.3s ease-in-out;
+
+}
+.learn.open{
+    height: 500px;
+}
+.overlay{
+    position: fixed;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 40;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+}
+.ham:hover{
+    outline: #bad8ff 1px solid;
+ 
+}
+.ham-item{
+    display: flex;
+    padding: 16px 12px;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    border-radius: 24px;
+}
+.ham-item:hover{
+    font-weight: 900;
+    
+    outline: 2px solid #7b7b7b;
+    color: #2A7AE2;
+
+}
+.arrow{
+    transform: rotate(0deg);
+    transition: all 0.3s ease-in-out;
+}
+.rotate{
+    transform: rotate(90deg);
+    transition: all 0.3s ease-in-out;
+}
