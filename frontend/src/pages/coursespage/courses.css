@@ -1,0 +1,42 @@
+.courses{
+   row-gap: 32px;
+   position: relative;
+   scrollbar-width: none;
+}
+
+.domains{
+    scrollbar-width: none;
+}
+
+.overlay{
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255,255,255,0.6);
+    z-index: 30;
+
+}
+
+.filter{
+    background-color: rgba(255, 255, 255, 0.656);
+    color: #10305ae7;
+    font-weight: 600;
+    cursor: pointer;
+    border-color: #626a73bf;
+    border-width: 1px;
+    transition: all 0.1s ease-in-out;
+}
+
+.filter:hover{
+    border-color: #10305a;
+    color: #10305a;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    outline: solid 2px #10305a;
+    
+}
+
+.filters{
+    border: 2px solid #626a73bf;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.656);
+    scrollbar-width: none;
+}

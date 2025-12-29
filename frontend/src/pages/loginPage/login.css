@@ -1,0 +1,75 @@
+
+
+.bg-login {
+  position: fixed;
+  bottom: -40%;
+  left: 0;
+  right: 0;
+  background:
+    radial-gradient(circle at 20% 30%, #006EFD, transparent 60%),
+    radial-gradient(circle at 80% 20%, #1F1CD9, transparent 60%),
+    radial-gradient(circle at 50% 80%, #4f4dd8, transparent 60%);
+    
+  filter: blur(80px);
+  
+  animation: float 20s infinite alternate ease-in-out;
+}
+
+@keyframes float {
+  0%   { transform: translate(-50%, -10%); }
+  100% { transform: translate(0,0); }
+}
+
+.email,.pass{
+    transition: all 0.3s ease-in-out;
+}
+
+.email:focus-within,.pass:focus-within{
+    box-shadow: 12px 4px 32px #abcdf966;
+    outline: solid 2px #999ee3de;
+}
+
+.disabled{
+    background-image: linear-gradient(90deg, #006efd88 0%, #1f1cd977 100%) ;
+    font-family: "¨PPFrama","Poppins",sans-serif;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.295);
+}
+
+.auth-heading{
+    font-size: 26px;
+}
+
+@media (max-width:1170px) {
+    
+
+    .login{
+        width: 60%;
+    }
+    
+}
+@media (max-width:768px) {
+    
+
+    .login{
+        width: 70%;
+    }
+    
+}
+@media (max-width:640px) {
+    
+
+    .login{
+        width: 90%;
+    }
+    
+}
+@media (max-width:515px) {
+    
+
+    .login{
+        width: 100%;
+        
+    }
+    
+}

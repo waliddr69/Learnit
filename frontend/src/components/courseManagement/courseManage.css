@@ -1,0 +1,19 @@
+.stat-card{
+    transition: all 0.3s ease-in-out;
+}
+
+.stat-card:hover{
+    background-color: #081638;
+    color: white;
+    box-shadow: 6px 4px 6px rgba(0, 0, 0, 0.1);
+    outline: 2px solid #dee8ff;
+    
+}
+.stat-card:hover svg{
+    background-color: transparent;
+}
+
+.stat-card:hover .view-link{
+    color: white;
+}
+

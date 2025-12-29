@@ -5,6 +5,7 @@ import arrow from "../../assets/icons/Arrow Right Arrow-iconrepo-com.svg";
 import {  useEffect, useRef, useState } from "react";
 import close from "../../assets/icons/close-x-svgrepo-com (1).svg";
 import { gsap } from "gsap";
+import { Link, useNavigate } from "react-router-dom";
 
 
 function Header(){
@@ -12,6 +13,7 @@ function Header(){
     const [hamMenu,showHamMenu] = useState(false);
     const [subhamMenu,showsubHamMenu] = useState(false);
     const learnRef = useRef(null)
+    const navigate = useNavigate();
    
     useEffect(()=>{
         if(menu ){
@@ -30,14 +32,14 @@ function Header(){
                 <img src={logo} alt="logo"  className="w-24 h-auto sm:w-28 md:w-48 lg:w-48"/>
                 <nav className="hidden lg:block">
                     <ul>
-                    <li><a className="hidden lg:block">Courses</a></li>
-                    <li><a className="hidden lg:block">Education</a></li>
+                    <li><Link to={"/courses"} className="hidden lg:block" >Courses</Link></li>
+                    <li><Link to={"/education"} className="hidden lg:block">Education</Link></li>
                     <li onMouseEnter={()=>showMenu(true)}  ><a className="dropdown hidden lg:block" >Learn</a> <ChevronDown className="hidden lg:block"/></li>
                 </ul>
                 </nav>
 
                 <div className="btns flex justify-end shrink-0">
-                    <button className="cta main-btn text-[12px] px-2 py-3  squircle sm:px-12 sm:py-3 sm:text-[16px] md:px-12 md:py-3 md:text-[18px] lg:px-12 lg:py-3 lg:text-[18px] ">Sign up</button>
+                    <button onClick={()=>navigate("/login")} className="cta main-btn text-[12px] px-2 py-3  squircle sm:px-12 sm:py-3 sm:text-[16px] md:px-12 md:py-3 md:text-[18px] lg:px-12 lg:py-3 lg:text-[18px] ">Sign up</button>
                     <button className="sec sec-btn squircle text-[12px] px-2 py-3  sm:px-12 sm:py-3 sm:text-[16px] md:px-12 md:py-3 md:text-[18px] lg:px-12 lg:py-3 lg:text-[18px] ">Log in</button>
                     <div className="lg:hidden ham">
                         {!hamMenu &&<Menu onClick={()=>showHamMenu(true)}/>}
@@ -72,9 +74,9 @@ function Header(){
                     <div className="h-1 w-2/3" style={{backgroundColor:"#D3D3D3",borderRadius:"24px"}}></div>
                     <div className=" flex gap-5 items-center hover:bg-sky-100 rounded-3xl p-4 cursor-pointer">
                         <Cast/> 
-                        <div>
+                        <div onClick={()=>navigate("/teach/signup")}>
                             <h6 className="font-bold learn-subhead" style={{color:"#33333"}}>Teach</h6>
-                            <p style={{color:"var(--subheading-color)"}}>Teach now</p>
+                            <p style={{color:"var(--subheading-color)"}} >Teach now</p>
                         </div>       
                     </div>
                     <div className=" flex gap-5 items-center hover:bg-sky-100 rounded-3xl p-4 cursor-pointer">

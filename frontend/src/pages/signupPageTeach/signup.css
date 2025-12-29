@@ -1,0 +1,69 @@
+.bg {
+  position: fixed;
+  bottom: -40%;
+  left: 0;
+  right: 0;
+  background:
+    radial-gradient(circle at 20% 30%, #E33D2B, transparent 60%),
+    radial-gradient(circle at 80% 20%, #E4327E, transparent 60%),
+    radial-gradient(circle at 50% 80%, #d27268, transparent 60%);
+    
+  filter: blur(80px);
+  
+  animation: float 20s infinite alternate ease-in-out;
+}
+@keyframes float {
+  0%   { transform: translate(-50%, -10%); }
+  100% { transform: translate(0,0); }
+}
+
+.email,.pass,.fullname{
+    transition: all 0.3s ease-in-out;
+}
+
+.email:focus-within,.pass:focus-within,.fullname:focus-within{
+    box-shadow: 12px 4px 32px #abcdf966;
+    outline: solid 2px #999ee3de;
+}
+
+.right h6{
+    font-size: 17px;
+}
+
+.right p{
+    color: #394658b5;
+}
+
+@media (max-width:1170px) {
+    
+
+    .signup{
+        width: 90%;
+    }
+    
+}
+@media (max-width:768px) {
+    
+
+    .signup{
+        width: 70%;
+    }
+    
+}
+@media (max-width:640px) {
+    
+
+    .signup{
+        width: 90%;
+    }
+    
+}
+@media (max-width:515px) {
+    
+
+    .signup{
+        width: 100%;
+        
+    }
+    
+}

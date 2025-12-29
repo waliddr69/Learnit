@@ -1,0 +1,256 @@
+.why-us {
+  background: linear-gradient(to bottom, white 0%,white 30%, #dbebff 60%);
+  height: 100vh;
+}
+
+
+
+.scroll-image{
+    background-position: center;
+    background-size: cover;
+    border-radius: 8px;
+    border: solid 2px #ccc;
+
+}
+
+.scrolling-wrapper{
+    animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+    
+    100% { transform: translateY(-100%); }
+}
+
+.scrolling-wrapper2{
+    animation: scroll2 40s linear infinite;
+}
+@keyframes scroll2 {
+    
+    0%   { transform: translateY(-100%); }
+  100% { transform: translateY(0); }
+}
+.auto-scroll::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    to bottom,
+    #dbebff 0%,
+    rgba(219, 235, 255, 0) 20%,
+    rgba(219, 235, 255, 0) 80%,
+    #dbebff 100%
+  );
+}
+
+/* Section de présentation des offres */
+.offers-container {
+  padding: 200px 5%;
+  
+  margin: 500px auto;
+  background: linear-gradient(to bottom, #dbebff 0%,#dbebff 5%, white 60%);
+  
+}
+
+.offers-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.offers-header h2 {
+  
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+/* Grille de contenu alterné */
+.offer-row {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  
+  margin-bottom: 100px;
+}
+
+.offer-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.offer-image-wrapper {
+  flex: 1;
+  width: 50%;
+  border-radius: 20px;
+ height: 450px;
+ overflow: hidden;
+  
+  position: relative;
+}
+
+
+.offer-image-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120%; 
+  object-fit: cover;
+  transform: translateY(0);
+  will-change: transform;
+  
+
+  
+}
+
+.offer-content {
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 450px;
+  gap: 20px;
+}
+
+.offer-title-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.offer-title-group h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #10305A;
+}
+
+.offer-description {
+  color: #394658;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.view-link {
+  color: #1a2b4b;
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: 2px solid #1a2b4b;
+  width: fit-content;
+  padding-bottom: 4px;
+}
+
+/* Version Mobile */
+@media (max-width: 768px) {
+  .offer-row, .offer-row.reverse {
+    flex-direction: column-reverse;
+    gap: 30px;
+  }
+  .offer-image-wrapper{
+    width: 100%;
+    flex: none;
+  }
+  
+}
+/* Container principal pour le bloc centré */
+.offer-block-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  gap: 20px;
+  width: 100%;
+ 
+  margin: 60px auto;
+  
+}
+
+/* Titre li mlfou9*/
+.offer-title-large {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #1a2b4b;
+  margin: 0;
+}
+
+/* Container de l'image avec la bordure bleue */
+.offer-large-image-container {
+  width: 100%;
+   
+  border-radius: 4px;        
+  overflow: hidden;
+  line-height: 0;            /* Supprime l'espace blanc t7t image */
+}
+
+.offer-large-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Description li mlt7t */
+.offer-description-centered {
+  font-size: 1.6rem;
+  color: #1a2b4bd5;
+  margin-top: 10px;
+  font-weight: 400;
+}
+
+/* Adaptabilité mobile */
+@media (max-width: 768px) {
+  .offer-title-large {
+    font-size: 1.8rem;
+  }
+  .offer-description-centered {
+    font-size: 1rem;
+  }
+}
+.featured-banner-section {
+  padding: 80px 20px; /* Un peu moins de padding pour compenser la suppression du texte */
+  display: flex;
+  justify-content: center;
+  background-color: #ffffff;
+}
+
+.banner-container {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px; /* Espace augmenté entre le titre et l'image */
+}
+
+.banner-title {
+  font-size: 2.8rem; 
+  font-weight: 800;
+  color: #10305A;
+  margin: 0;
+  text-align: left;
+  line-height: 1.2;
+}
+
+.banner-frame {
+  width: 100%;
+  border: 4px solid #132e4b; 
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.banner-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Version Mobile */
+@media (max-width: 768px) {
+  .banner-title {
+    font-size: 1.8rem;
+  }
+  .banner-container {
+    gap: 20px;
+  }
+}

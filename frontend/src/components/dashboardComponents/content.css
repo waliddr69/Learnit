@@ -1,0 +1,14 @@
+.add{
+    position: fixed;
+    background: var(--primary-color);
+    bottom: 5%;
+    right: 5%;
+}
+
+.start{
+    background: var(--primary-color);
+    color: white;
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 0;
+    border-radius: 24px;
+}
