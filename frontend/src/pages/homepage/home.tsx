@@ -4,7 +4,7 @@ import sky from "../../assets/videos/sky.mp4"
 import "./home.css";
 import streamImg from "../../assets/images/stream.jpg";
 import img2 from "../../assets/images/50b13113-7c85-44d6-8ccb-92610fca6304.jpg";
-import img3 from "../../assets/images/Gemini_Generated_Image_ug1aohug1aohug1a.png";
+
 import img4 from "../../assets/images/fb625e4f-3f30-4aa6-8c30-f9cb9aeb75a3.jpg";
 import img5 from "../../assets/images/mockup_pc.png";
 import img6 from "../../assets/images/black_guy.png";
@@ -118,7 +118,7 @@ function Home() {
               <div className="scrolling-wrapper2 w-[32%] flex flex-col gap-4 ">
                 <div
                   className="scroll-image h-[69rem]"
-                  style={{ backgroundImage: `url(${img3})` }}
+                  style={{ backgroundImage: `url("/Gemini_Generated_Image_ug1aohug1aohug1a.png")` }}
                 ></div>
                 <div
                   className="scroll-image h-[69rem]"
@@ -158,7 +158,7 @@ function Home() {
               <div className="scrolling-wrapper2 w-[32%] flex flex-col gap-4 ">
                 <div
                   className="scroll-image h-[69rem]"
-                  style={{ backgroundImage: `url(${img3})` }}
+                  style={{ backgroundImage: `url("/Gemini_Generated_Image_ug1aohug1aohug1a.png")` }}
                 ></div>
                 <div
                   className="scroll-image h-[69rem]"
