@@ -1,25 +1,21 @@
-import video from "../../assets/videos/hero (3).mp4"
-import { ArrowDown, Notebook, Play, Send, UserStar, Video } from "lucide-react"
-import star from "../../assets/icons/icons8-étoile-64.png"
-import { Users } from 'lucide-react';
+
+import {  Play, UserStar } from "lucide-react"
+
 import vid from "../../assets/videos/hero (3).mp4"
-import Header from "../../components/header/header";
-import cart from "../../assets/icons/icons8-caddie-64 (1).png"
-import favorite from "../../assets/icons/icons8-favorite-64.png"
+
 import { Star } from 'lucide-react';
 import "./learningCoursePage.css"
-import { Hourglass } from 'lucide-react';
-import easy from "../../assets/icons/easy.svg"
+
 import { FileText } from 'lucide-react';
 import { SquarePlay } from 'lucide-react';
-import { NotebookPen } from 'lucide-react';
+
 import { useState } from "react";
-import { Blocks } from 'lucide-react';
+
 import { Check } from 'lucide-react';
-import { Layers } from 'lucide-react';
+
 import { ChevronRight } from 'lucide-react';
 import { MessageSquareQuote } from 'lucide-react';
-import Review from "../../components/Review/review";
+
 import RatingStars from "./ratingStars";
 import Footer from "@/components/footer/footer";
 function LearningCourse(){

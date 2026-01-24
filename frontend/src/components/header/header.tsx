@@ -6,7 +6,7 @@ import {  useEffect, useRef, useState } from "react";
 import close from "../../assets/icons/close-x-svgrepo-com (1).svg";
 import { gsap } from "gsap";
 import { Link, useNavigate } from "react-router-dom";
-import { BookOpenText, ChartPie, LogOut, Presentation, ShoppingCart } from "lucide-react";
+import {  ChartPie, LogOut, } from "lucide-react";
 import cart from "../../assets/icons/icons8-caddie-64 (1).png"
 import PopperItem from "../menuPopper/popper";
 

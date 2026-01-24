@@ -1,9 +1,9 @@
-import ApexCharts from 'apexcharts'
+
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 
  const ApexChart = () => {
-        const [state, setState] = React.useState({
+        const [state, _setState] = React.useState({
           
             series: [{
               name: 'series1',

@@ -1,10 +1,10 @@
 import Header from "../../components/header/header";
 import CartItem from "../../components/cartItem/cartItem"
 import "./cart.css"
-import { Shield } from 'lucide-react';
+
 import Footer from "@/components/footer/footer";
 import PayementInfo from "@/components/payementInfo/payementInfo";
-import { useNavigate } from "react-router-dom";
+
 function CartPage(){
 
     

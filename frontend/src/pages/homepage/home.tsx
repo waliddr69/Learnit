@@ -1,4 +1,4 @@
-import Header from "../../components/header/header";
+
 import Hero from "../../components/hero/hero";
 import sky from "../../assets/videos/sky.mp4"
 import "./home.css";
@@ -16,7 +16,7 @@ import img11 from "../../assets/images/mockup.png";
 import icon1 from "../../assets/icons/online courses-iconrepo-com (1) 1.svg";
 import teacher from "../../assets/images/teacher.png"
 import icon2 from "../../assets/icons/chat-iconrepo-com 1.svg";
-import { useGSAP } from "@gsap/react";
+
 
 import gsap from "gsap";
 import { useEffect, useRef } from "react";

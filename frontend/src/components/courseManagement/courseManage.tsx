@@ -1,10 +1,10 @@
 import {
   ChevronRight,
   FileText,
-  NotebookPen,
+  
   PlaySquare,
   Plus,
-  SquarePlay,
+ 
   Users,
 } from "lucide-react";
 import { MessageSquareQuote } from "lucide-react";

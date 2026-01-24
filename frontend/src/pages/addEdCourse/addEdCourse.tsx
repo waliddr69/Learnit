@@ -5,10 +5,7 @@ import { NotebookPen } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import { Check } from "lucide-react";
 import {DomainsEd} from "../../models/domains";
-import easy from "../../assets/icons/easy.svg"
-import medium from "../../assets/images/intermediate.svg"
-import hard from "../../assets/images/hard.svg"
-import all from "../../assets/images/all.svg"
+
 import { Plus } from "lucide-react";
 import "./addEdCourse.css"
 function AddEdCourse(){

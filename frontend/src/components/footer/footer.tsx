@@ -1,5 +1,5 @@
 import { domains, domainsEd } from "@/models/domains"
-import { DomainsEd } from "@/models/domains"
+
 import "./footer.css"
 function Footer(){
     return(

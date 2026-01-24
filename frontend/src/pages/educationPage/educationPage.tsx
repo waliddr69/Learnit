@@ -4,11 +4,11 @@ import Search from "../../components/search/search";
 import "./educationPage.css"
 
 import DomainCard from "../../components/domainCard/domain";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 
 import { X } from 'lucide-react';
 import { SlidersHorizontal } from 'lucide-react';
-import CoursesCard from "../../components/coursesCard/coursesCard";
+
 import gsap from "gsap";
 import { domainsEd } from "@/models/domains";
 import Footer from "@/components/footer/footer";

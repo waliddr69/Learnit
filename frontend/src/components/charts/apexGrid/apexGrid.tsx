@@ -11,12 +11,14 @@ import RatingStars from './Rating';
 import { useNavigate } from 'react-router-dom';
 const ApexGrid = () => {
     // Row Data: The data to be displayed.
-    const [rowData, setRowData] = useState([
+    const [rowData, _setRowData] = useState([
         { Student: ["DW","Dari Walid"], Completion: 100, Rating: 4.2 },
         { Student: ["BY","Bazine Yahia"], Completion: 60, Rating: 5 },
         { Student: ["DW","Dari Walid"], Completion: 40, Rating: 2 },
         
     ]);
+
+    
     const navigate = useNavigate()
     const SendBtn = () => {
     return (
@@ -72,7 +74,7 @@ const ApexGrid = () => {
   }
 
     // Column Definitions: Defines the columns to be displayed.
-    const [colDefs, setColDefs] = useState<ColDef[]>([
+    const [colDefs, _setColDefs] = useState<ColDef[]>([
         { field: "Student" ,flex:1,cellRenderer:Avatar},
         { field: "Completion",headerName:"Course Completion" ,flex:1,cellRenderer:Completion},
         { field: "Rating" ,flex:1,cellRenderer:Rating},

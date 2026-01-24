@@ -1,10 +1,10 @@
 import logo from "../../assets/images/logo.svg"
 
 import { Outlet, useLocation, useNavigate } from "react-router-dom"
-import { GraduationCap, LogOut, User, UserPen, Youtube } from 'lucide-react';
+import { GraduationCap, LogOut, UserPen, Youtube } from 'lucide-react';
 import { MessagesSquare } from 'lucide-react';
 import "./dashboard.css"
-import { useEffect, useRef, useState, type RefObject } from "react"
+import { useEffect, useRef, useState } from "react"
 import { LayoutDashboard } from 'lucide-react';
 import { Menu } from 'lucide-react';
 import { X } from "lucide-react";
@@ -13,7 +13,7 @@ import PopperItem from "@/components/menuPopper/popper";
 function DashboardTeach(){
     const navigate = useNavigate();
     const [selected, setSelected] = useState("");
-    const [visibility,setVisible] = useState(false)
+   
     const [menu, showMenu] = useState(false);
     const popperMenu = useRef<HTMLDivElement|null>(null)
     const location = useLocation()

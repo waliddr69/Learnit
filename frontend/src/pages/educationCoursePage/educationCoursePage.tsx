@@ -1,5 +1,5 @@
 import { Notebook } from "lucide-react"
-import star from "../../assets/icons/icons8-étoile-64.png"
+
 import { Users } from 'lucide-react';
 import vid from "../../assets/videos/hero (3).mp4"
 import Header from "../../components/header/header";
@@ -8,7 +8,7 @@ import favorite from "../../assets/icons/icons8-favorite-64.png"
 import { Star } from 'lucide-react';
 import "./educationCoursePage.css"
 import { Hourglass } from 'lucide-react';
-import easy from "../../assets/icons/easy.svg"
+
 import { FileText } from 'lucide-react';
 import { SquarePlay } from 'lucide-react';
 import { NotebookPen } from 'lucide-react';

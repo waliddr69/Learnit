@@ -1,7 +1,6 @@
 import cart from "../../assets/icons/icons8-caddie-64 (1).png"
 import favorite from "../../assets/icons/icons8-favorite-64.png"
-import star from "../../assets/icons/icons8-étoile-64.png"
-import easy from "../../assets/icons/easy.svg"
+
 import { Notebook } from 'lucide-react';
 import "./coursesCard.css"
 import { useNavigate } from "react-router-dom";

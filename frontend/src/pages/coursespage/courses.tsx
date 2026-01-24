@@ -4,7 +4,7 @@ import Search from "../../components/search/search";
 import "./courses.css";
 
 import DomainCard from "../../components/domainCard/domain";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 
 import { X } from 'lucide-react';
 import { SlidersHorizontal } from 'lucide-react';

@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ArrowRight, BookOpenText, BookSearch, Heart, LogOut, MessagesSquare, Presentation, ShoppingCart, SquareLibrary } from 'lucide-react';
+import {  BookOpenText, BookSearch, Heart, LogOut, MessagesSquare, Presentation, ShoppingCart, SquareLibrary } from 'lucide-react';
 import "./navDashboard.css"
 import { Target } from 'lucide-react';
 import { useEffect, useRef, useState } from "react";
