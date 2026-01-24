@@ -1,0 +1,40 @@
+.thumbnail{
+    background-image: url("../../assets/images/black_guy.png");
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+.user-btn{
+    background-color: #3359cb;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.user-card:hover > .user-btn{
+    background-color: #003fed;
+}
+
+.user-btn:hover{
+    transform: translateY(-2px);
+}
+
+.completed{
+    background-color: transparent;
+    border:2px solid rgba(0, 0, 0, 0.46);
+    color: black;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.completed:hover{
+    color: #003fed;
+    border:2px solid #003fed;
+    transform: translateY(-2px);
+}

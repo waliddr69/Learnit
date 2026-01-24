@@ -19,20 +19,21 @@ import { Layers } from 'lucide-react';
 import { ChevronRight } from 'lucide-react';
 import { MessageSquareQuote } from 'lucide-react';
 import Review from "../../components/Review/review";
+import Footer from "@/components/footer/footer";
 
 function Course(){
     const [selected,setSelected] = useState("Overview")
     const [selectedChaps,setSelectedChaps] = useState<String[]>([]);
     return(
-    <><Header /><main className="flex flex-col gap-6 p-5 bg-[#dbebff]  ">
+    <><Header /><main className="flex flex-col gap-6 p-5 pb-20 bg-[#dbebff]  ">
 
             <div className="first-level-content relative flex gap-6">
                 <div className="left lg:w-[70%] md:w-full bg-white p-10 rounded-3xl flex flex-col gap-6 shadow-lg border-2 border-[#E1E2F3]">
                     <div className="flex justify-between lg:hidden items-center">
                       <p style={{color:"#1F1CD9",fontWeight:"600"}}> <span style={{color:"#1f1cd99c"}}>Tech /</span>  Web Dev </p>  
-                      <div className="difficulty items-center py-1 px-6 gap-3     rounded-3xl flex border-[#00c93257]">
-                        <img src={easy} alt="easy" width={40}/>
-                        <p className="text-green-400 font-medium" style={{color:"green", fontSize:"17px"}}>Easy</p>
+                      <div className=" items-center py-1 px-6 gap-3     rounded-3xl flex border-[#00c93257]">
+                      
+                        <p className="text-green-400 font-medium p-2 border-1 border-[#00c93257] rounded-3xl" style={{color:"green", fontSize:"17px"}}>Beginner</p>
                         
                     </div>
                     
@@ -42,20 +43,35 @@ function Course(){
                     </div>
                     
                     <h3 className="text-[#061323]">ML for beginners</h3>
-                    <div className="instructor flex gap-2 items-center">
-                        <div className="instructor-photo bg-black rounded-full"></div>
-                    <p >John Doe</p>
+                    <div className="instructor bg-[#f1f1f1] p-2 rounded-3xl flex flex-col justify-start items-start md:flex-row gap-4 ">
+                        <div className="flex flex-row shrink-0   gap-2 items-center">
+                            <div className="instructor-photo bg-black rounded-3xl"></div>
+                            <div className="flex flex-col gap-2">
+                               <p className="text-lg">John Doe</p> 
+                               <div className="stars-rating flex gap-1">
+                                <Star className="fill-yellow-400" stroke="none"/>
+                                <Star className="fill-yellow-400" stroke="none"/>
+                                <Star className="fill-yellow-400" stroke="none"/>
+                                <Star className="fill-yellow-400" stroke="none"/>
+                                <Star className="stroke-2 stroke-yellow-400"/>
+                            </div>
+                            </div>
+                            
+
+                        </div>
+                        <p className="bio ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit natus rem inventore minima eaque animi est perferendis quos eligendi sapiente?</p>
+                        
                     </div>
                     <p className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     
-                    <div className="course-info hidden md:flex  gap-6 border-2 p-4 border-[#585F68] rounded-3xl items-center justify-between">
+                    <div className="course-info hidden md:flex  gap-6 border-2 p-4 border-[#00000061] rounded-3xl items-center justify-between">
                         <div className="rating flex  flex-col justify-center  w-[25%] items-center  gap-3 border-r-1">
                             <div className="stars-rating flex gap-1">
-                                <Star color="#abad00"/>
-                                <Star color="#abad00"/>
-                                <Star color="#abad00"/>
-                                <Star color="#abad00"/>
-                                <Star color="#abad00"/>
+                                <Star className="fill-yellow-400" stroke="none"/>
+                                <Star className="fill-yellow-400" stroke="none"/>
+                                <Star className="fill-yellow-400" stroke="none"/>
+                                <Star className="fill-yellow-400" stroke="none"/>
+                                <Star className="fill-yellow-400" stroke="none"/>
                             </div>
                             <p><span className="text-2xl">4.7</span>/5</p>
                         </div>
@@ -79,9 +95,9 @@ function Course(){
                 <div className="payement hidden lg:flex sticky top-6 w-[30%] h-fit bg-white p-10 rounded-3xl  flex-col gap-6 shadow-lg border-2 border-[#E1E2F3]">
                     <div className="flex justify-between items-center">
                       <p style={{color:"#1F1CD9",fontWeight:"600"}}> <span style={{color:"#1f1cd99c"}}>Tech /</span>  Web Dev </p>  
-                      <div className="difficulty items-center py-1 px-6 gap-3     rounded-3xl flex border-[#00c93257]">
-                        <img src={easy} alt="easy" width={40}/>
-                        <p className="text-green-400 font-medium" style={{color:"green", fontSize:"17px"}}>Easy</p>
+                      <div className=" items-center py-1 px-6 gap-3     rounded-3xl flex border-[#00c93257]">
+                       
+                        <p className="text-green-400 font-medium p-2 border-1 border-[#00c93257] rounded-3xl" style={{color:"green", fontSize:"17px"}}>Beginner</p>
                         
                     </div>
                     
@@ -109,7 +125,7 @@ function Course(){
                     <div className="flex flex-col">
                         <h3 className="price-tag-md">6000 DA</h3>
                         <div className="flex justify-around">
-                            <div className="flex flex-col gap-3 items-center"><Star color="#abad00"/> <p className="text-[#e0e0e0]">4.7/5</p></div>
+                            <div className="flex flex-col gap-3 items-center"><Star className="fill-yellow-400" stroke="none"/> <p className="text-[#e0e0e0]">4.7/5</p></div>
                                 
                         <div className="enrolled flex flex-col flex-1 items-center w-[25%] justify-center gap-3 ">
                             <Users color="#e0e0e0" width={30} height={30}/>
@@ -259,7 +275,7 @@ function Course(){
                 </div>
                 
             </div>
-        </main></>
+        </main><Footer/></>
     )
 }
 

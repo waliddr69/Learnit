@@ -1,0 +1,14 @@
+.message-content-receiver{
+    color: #333333c4;
+    border-radius: 24px 24px 24px 0px;
+}
+
+.message-content-sender{
+    color: white;
+    border-radius: 24px 24px 0px 24px;
+    background: var(--primary-color)
+}
+
+.messages-container{
+    scrollbar-width: none;
+}

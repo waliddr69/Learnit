@@ -4,7 +4,7 @@ import { NotebookPen } from 'lucide-react';
 import "./firstCourse.css"
 import { useNavigate } from "react-router-dom";
 import { Check } from "lucide-react";
-import Domains from "../../models/domains";
+import {Domains} from "../../models/domains";
 import easy from "../../assets/icons/easy.svg"
 import medium from "../../assets/images/intermediate.svg"
 import hard from "../../assets/images/hard.svg"

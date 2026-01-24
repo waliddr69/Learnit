@@ -1,0 +1,11 @@
+.photo-label{
+    background: var(--primary-color);
+    width: 100px;
+    height: 100px;
+    display: flex;
+    font-size: 26px;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+    background-size: cover;
+}

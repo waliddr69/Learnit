@@ -7,10 +7,24 @@ import Login from "./pages/loginPage/login";
 import Signup from "./pages/signupPage/signup";
 import SignupTeach from "./pages/signupPageTeach/signup";
 import DashboardTeach from "./pages/dashboardTeach/dashboard";
-import Content from "./components/dashboardComponents/content";
+import Content from "./components/dashboardComponents/content/content";
 import FirstCourse from "./pages/firstCoursePage/firstcourse";
 import LoginTeach from "./pages/loginPageTeach/login";
 import CourseManage from "./components/courseManagement/courseManage";
+import Messages from "./components/dashboardComponents/messages/messages";
+import Dashboard from "./components/dashboardComponents/dashboard/dashboard";
+import DashboardUser from "./pages/dashboardUser/dashboardUser";
+import YourLearning from "./components/dashboardUser/yourLearning/yourLearning";
+import MessageView from "./components/dashboardComponents/messages/messageView";
+import LearningCourse from "./pages/learningCoursePage/learningCoursePage";
+import Favorite from "./components/dashboardUser/yourLearning/favorite";
+import CartPage from "./pages/cartPage/cart";
+import Payement from "./pages/payementPage/payement";
+import InstructorPage from "./pages/instructorPage/instructorPage";
+import Account from "./pages/accountPage/account";
+import AddEdCourse from "./pages/addEdCourse/addEdCourse";
+import Education from "./pages/educationPage/educationPage";
+import EducationCourse from "./pages/educationCoursePage/educationCoursePage";
 function App() {
   return (
     <Router>
@@ -18,17 +32,35 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/courses" element={<Courses />} />
+        <Route path="/education" element={<Education />} />
         <Route path="/course" element={<Course />} />
+        <Route path="/educationCourse" element={<EducationCourse />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/teach/signup" element={<SignupTeach />} />
         <Route path="/teach/login" element={<LoginTeach />} />
-        <Route path="/teach/firstCourse" element={<FirstCourse />} />
+        <Route path="/teach/createCourse" element={<FirstCourse />} />
+        <Route path="/teach/createEdCourse" element={<AddEdCourse />} />
+        
         <Route path="/teach" element={<DashboardTeach />}>
           <Route path="content" element={<Content />} />
-          <Route path="content/course" element={<CourseManage/>}/>
+          <Route path="messages" element={<Messages />} />
+          <Route path="messages/id" element={<MessageView />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="content/course" element={<CourseManage />} />
+        </Route>
+        <Route path="/dashboard" element={<DashboardUser/>}>
+          <Route path="yourLearning" element={<YourLearning />} />
+          <Route path="favorite" element={<Favorite />} />
+          <Route path="messages/id" element={<MessageView />} />
+          <Route path="messages" element={<Messages />} />
           
         </Route>
+        <Route path="course/chapter1" element={<LearningCourse />} />
+        <Route path="cart" element={<CartPage />} />
+        <Route path="payement" element={<Payement />} />
+        <Route path="instructor" element={<InstructorPage />} />
+        <Route path="account" element={<Account />} />
       </Routes>
     </Router>
   );

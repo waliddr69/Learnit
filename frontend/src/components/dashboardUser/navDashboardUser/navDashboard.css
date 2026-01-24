@@ -1,0 +1,68 @@
+.dashboard-header{
+    background-color: var(--heading1-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky !important;
+    height: 60px;
+    padding: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav ul{
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    height: 100%;
+
+}
+.clickP .popper{
+    visibility: visible;
+    opacity: 1;
+}
+.browse-course{
+    background: var(--primary-color);
+}
+
+.account{
+font-family: "Poppins", sans-serif!important;
+}
+.dashboard-user-ul li{
+    height: 100%;
+    color: rgb(243, 243, 243);
+    display: flex;
+    gap: 12px !important;
+    
+    align-items: center;
+    
+    
+}
+@media (max-width:475px) {
+  .dashboard-user-ul li{
+    
+    gap: 8px !important;
+    
+    font-size: 12px;
+    
+    
+}  
+    
+}
+.dashboard-user-ul li svg{
+    transition: all 0.2s ease-in-out;
+}
+.filled svg{
+    fill: white;
+}
+
+.stroked svg{
+    stroke: solid 3px;
+}
+
+
+.active{
+    color: white;
+    border-bottom: 4px solid white;
+    font-weight: bolder;
+
+}

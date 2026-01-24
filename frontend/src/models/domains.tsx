@@ -1,4 +1,49 @@
-const Domains = [
+import { Cpu, BriefcaseBusiness, Paintbrush, Brain, Languages, Pill, Computer, TextSearch } from "lucide-react";
+
+export const domains = {"All":null, "Tech":Cpu , "Business":BriefcaseBusiness, "Art & design":Paintbrush, "Science":Brain, "Languages":Languages};
+export const domainsEd = {"All":null, "Medecine":Pill , "Computer science":Computer, "Sciences & Technologies": TextSearch};
+
+export const DomainsEd = [
+  {
+    id: "med",
+    label: "Medecine",
+    subCategories: [
+      "1ère Année",
+      "2ère Année",
+      "3ère Année",
+      "4ère Année",
+      "5ère Année",
+      "6ère Année",
+      "7ère Année",
+      
+    ],
+  },
+  {
+    id: "info",
+    label: "Computer science",
+    subCategories: [
+      "1ère Année",
+      "2ère Année",
+      "3ère Année",
+      "4ère Année",
+      "5ère Année",
+    ],
+  },
+  {
+    id: "ST",
+    label: "Sciences and technologies",
+    subCategories: [
+      "1ère Année",
+      "2ère Année",
+      "3ère Année",
+      "4ère Année",
+      "5ère Année",
+    ],
+  }
+];
+
+
+export const Domains = [
   {
     id: "tech",
     label: "Tech",
@@ -52,4 +97,4 @@ const Domains = [
   },
 ];
 
-export default Domains;
+

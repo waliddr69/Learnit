@@ -1,0 +1,10 @@
+.cart-img{
+    background-image: url("../../assets/images/black_guy.png");
+    background-position: center;
+    background-size: cover;
+    border-radius: 24px;
+}
+
+.cart-item .price{
+    font-size: 28px;
+}

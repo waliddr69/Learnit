@@ -1,6 +1,7 @@
 import "./courseCard.css"
 import { FileCog } from 'lucide-react';
 
+
 type TeachCourseCardProps = {
   onClick: () => void;
 };

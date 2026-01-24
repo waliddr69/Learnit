@@ -1,0 +1,15 @@
+.content-item  svg{
+    color: #042662;
+}
+
+.click {
+    background-color: #042662;
+}
+
+.click p{
+    color: white;
+}
+
+.content-item:hover  svg{
+    color: white;
+}

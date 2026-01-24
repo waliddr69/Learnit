@@ -28,7 +28,7 @@ function Login() {
     <>
         <img src={logo} alt="logo" onClick={()=>navigate("/")} className="  w-34 h-auto sm:w-38 md:w-48 lg:w-68 pt-10 pl-10 cursor-pointer" />
       <main className="h-full pt-10 w-full flex justify-center">
-        <div className="login  h-fit bg-[#F7F7F7] border-[#E1E2F3] justify-start py-10 border-2 flex flex-col gap-6 rounded-3xl w-[40%] relative z-10 shadow-lg">
+        <div className="login  h-fit bg-[#ffffff] border-[#E1E2F3] justify-start py-10 border-2 flex flex-col gap-6 rounded-3xl w-[40%] relative z-10 shadow-lg">
           <h2 className="text-center auth-heading  flex flex-col">
             <span>Welcome back👋</span> <span>Sign in to continue your learning journey</span>
           </h2>
@@ -46,7 +46,7 @@ function Login() {
                   className="flex-1"
                   placeholder="you@example.com"
                 />
-                <Mail />
+                <Mail color="#9CA3AF"/>
               </div>
             </div>
             <div className="w-[80%] flex flex-col gap-2">
@@ -61,12 +61,12 @@ function Login() {
                   className=" flex-1"
                 />
                 {visible ? (
-                  <Eye
+                  <Eye color="#9CA3AF"
                     className="cursor-pointer"
                     onClick={() => setVisible(false)}
                   />
                 ) : (
-                  <EyeClosed
+                  <EyeClosed color="#9CA3AF"
                     className="cursor-pointer"
                     onClick={() => setVisible(true)}
                   />

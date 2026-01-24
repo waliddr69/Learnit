@@ -1,11 +1,17 @@
 header{
     height: 15%;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    box-shadow: 4px 4px 16px rgba(0,0,0,0.25);
     
     position: relative;
     z-index: 50;
-    background-color: white;
+    
 
+}
+
+.clickP .popper{
+    visibility: visible;
+    opacity: 1;
 }
 .wrapper{
     width: 100%;
@@ -14,17 +20,24 @@ header{
     gap: 60px;
 }
 
-nav ul{
+@media (max-width:437px) {
+    .wrapper{
+        gap:10px
+    }
+    
+}
+
+.main-nav ul{
     display: flex;
     gap: 32px;
     align-items: center;
     height:100%;
 }
-nav li{
+.main-nav li{
     max-width: fit-content;
     
 }
-nav li a{
+.main-nav li a{
     font-family: "PPFrama" , "Poppins" , sans-serif;
     font-weight: 300;
     letter-spacing: 1px;
@@ -32,7 +45,7 @@ nav li a{
     transition: color 0.3s ease-in-out, outline 0.2s ease-in-out;
 }
 
-nav li a:hover:not(.dropdown){
+.main-nav li a:hover:not(.dropdown){
     font-family: "PPFrama" , "Poppins" , sans-serif;
     font-weight: 900;
     cursor: pointer;
@@ -43,40 +56,40 @@ nav li a:hover:not(.dropdown){
     
 }
 
-nav ul li:nth-child(3) {
+.main-nav ul li:nth-child(3) {
     display: flex;
     align-items: center;
     gap: 4px;
     padding:4px
 }
 
-nav ul li:nth-child(3):hover {
+.main-nav ul li:nth-child(3):hover {
 
     background-color: #bad8ff;
     border-radius:24px;
     cursor:pointer;
    
 }
-nav ul li:nth-child(3):hover  a{
+.main-nav ul li:nth-child(3):hover  a{
     
     font-weight: 900;
 }
-nav ul li:nth-child(3) svg{
+.main-nav ul li:nth-child(3) svg{
     transform:rotate(0deg);
     transition:all 0.2s ease-in-out
 }
-nav ul li:nth-child(3):hover svg{
+.main-nav ul li:nth-child(3):hover svg{
     transform:rotate(180deg);
     
 }
-.menu-open nav ul li:nth-child(3) svg{
+.menu-open .main-nav ul li:nth-child(3) svg{
     transform:rotate(180deg);
     
 }
-.menu-open nav ul li:nth-child(3) a{
+.menu-open .main-nav ul li:nth-child(3) a{
     font-weight: 900;
 }
-.menu-open nav ul li:nth-child(3) {
+.menu-open .main-nav ul li:nth-child(3) {
 
     background-color: #bad8ff;
     border-radius:24px;

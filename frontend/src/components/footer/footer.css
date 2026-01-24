@@ -1,0 +1,32 @@
+footer{
+    background-color: #090e25;
+}
+
+footer h3{
+    font-family: "PPFrama", "Poppins", sans-serif;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 0.15rem;
+}
+
+footer h6{
+    font-weight: 600;
+    color: rgb(240, 237, 237);
+}
+
+footer ul li{
+    color: #B5B5B5;cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+footer ul li:hover{
+    
+    color: #2a7ae2;
+}
+
+@media (max-width:483px) {
+    .footer-content{
+        grid-template-columns: repeat(1,1fr);
+    }
+    
+}

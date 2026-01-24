@@ -1,0 +1,59 @@
+import { domains, domainsEd } from "@/models/domains"
+import { DomainsEd } from "@/models/domains"
+import "./footer.css"
+function Footer(){
+    return(
+        <footer>
+            <div className="footer-wrapper p-[5%_5%_10px_5%]  flex flex-col gap-10">
+                <h3>Learn practical skills. Build real projects. Grow your career.</h3>
+
+                <div className="footer-content grid  grid-cols-2 gap-10 lg:flex flex-row  lg:flex-nowrap justify-between">
+                    <div className="flex flex-col gap-4">
+                        <h6>Courses</h6>
+                        <ul>
+                        {Object.entries(domains).map(([domain])=>{
+                            if(domain!="All"){
+                        return <li>{domain}</li>
+                    }
+                        
+                    
+                        })}
+                        </ul>
+                    </div>
+                    <div className="flex flex-col gap-4">
+                        <h6>Educational courses</h6>
+                        
+                        <ul>
+                            {Object.entries(domainsEd).map(([domain])=>{
+                            if(domain!="All"){
+                        return <li>{domain}</li>
+                    }
+                        
+                    
+                        })}
+                        </ul>
+                    </div>
+                    <div className="flex flex-col gap-4">
+                        <h6>Teachers</h6>
+                        
+                        <ul>
+                            <li>Become an instructor</li>
+                        </ul>
+                    </div>
+                    <div className="flex flex-col gap-4">
+                        <h6>Contact us</h6>
+                        
+                        <ul>
+                            <li>+213 0798492604</li>
+                            <li>waliddari69@gmail.com</li>
+                        </ul>
+                    </div>
+                    
+                </div>
+                <p className="text-[#B5B5B5] text-lg self-center mt-10">Learnit. Ltd &copy; 2026.All Rights Reserved</p>
+            </div>
+        </footer>
+    )
+}
+
+export default Footer

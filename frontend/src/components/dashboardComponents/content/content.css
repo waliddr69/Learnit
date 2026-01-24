@@ -1,6 +1,15 @@
-.add{
+.add-course{
     position: fixed;
     background: var(--primary-color);
+    bottom: 5%;
+    right: 5%;
+}
+
+
+
+.add-education{
+    position: fixed;
+    background: linear-gradient(rgb(255, 170, 0),rgb(225, 159, 38));
     bottom: 5%;
     right: 5%;
 }

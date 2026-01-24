@@ -1,0 +1,10 @@
+.checkout .item{
+    color: var(--subheading-color);
+}
+
+@media (max-width:1020px) {
+    .checkout{
+        box-shadow: 0px -10px 15px -3px #dbebff;
+    }
+    
+}

@@ -1,6 +1,6 @@
 .why-us {
-  background: linear-gradient(to bottom, white 0%,white 30%, #dbebff 60%);
-  height: 100vh;
+  background: linear-gradient(to bottom, white 0%,#dbebff 40%, #dbebff 60%);
+  
 }
 
 
@@ -16,6 +16,8 @@
 .scrolling-wrapper{
     animation: scroll 20s linear infinite;
 }
+
+
 
 @keyframes scroll {
     
@@ -49,9 +51,9 @@
 
 /* Section de présentation des offres */
 .offers-container {
-  padding: 200px 5%;
+  padding: 200px 5% 0px;
   
-  margin: 500px auto;
+  
   background: linear-gradient(to bottom, #dbebff 0%,#dbebff 5%, white 60%);
   
 }
@@ -83,7 +85,7 @@
 .offer-image-wrapper {
   flex: 1;
   width: 50%;
-  border-radius: 20px;
+  
  height: 450px;
  overflow: hidden;
   
@@ -121,14 +123,14 @@
 }
 
 .offer-title-group h3 {
-  font-size: 1.8rem;
+  
   font-weight: 700;
   color: #10305A;
 }
 
 .offer-description {
   color: #394658;
-  font-size: 1.1rem;
+  
   font-weight: 600;
   line-height: 1.6;
 }
@@ -254,3 +256,136 @@
     gap: 20px;
   }
 }
+
+/* teach section */
+.teach-content{
+  padding: 0px 5% 150px;
+  width: 100%;
+}
+
+.teach{
+  background: radial-gradient( #f6d056 0%,#f6d056 30%,white  60%);
+  
+}
+
+
+.teach .main-img{
+  background-image: url("../../assets/images/teach.png");
+  height: 500px;
+  width: 600px;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
+  
+}
+
+.teach .down-img{
+  height: 200px;
+  width: 200px;
+  background-image: url("../../assets/images/work.jpg");
+  background-position: center;
+  background-size: cover;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
+  
+}
+.teach .right-img{
+  height: 100px;
+  width: 100px;
+  background-image: url("../../assets/images/up.jpg");
+  background-position: center;
+  background-size: cover;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
+  
+}
+
+.teach .right h3 span{
+  color: #217ae2;
+  position: relative;
+  font-family: "Lyons", serif;
+  font-style: italic;
+  font-size: 3rem;
+}
+
+.teach .right h3 span::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px; 
+  width: 100%;
+  height: 5px; 
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='8'><path d='M93.4364 1.14924C83.1007 1.54308 72.8864 2.02734 62.9258 2.55676C48.8254 3.30569 34.7305 4.08046 20.7205 5.30716C16.3105 5.69454 11.832 5.93986 7.44958 6.42409C4.69855 6.72753 1.05074 7.16005 0.572017 7.25044C0.321622 7.30209 0.212384 7.37964 0.177086 7.40546C-0.0711028 7.58624 -0.0258175 7.76049 0.114271 7.89607C0.170527 7.95418 0.312782 8.09627 0.707677 8.11564C27.1171 9.43919 54.1223 6.85666 80.5637 6.58549C126.418 6.12064 173.662 7.96715 219.152 11.9959C219.549 12.0282 219.935 11.8667 219.99 11.6278C220.057 11.3954 219.77 11.1694 219.373 11.1372C173.805 7.10195 126.484 5.24898 80.5416 5.72029C55.8993 5.97209 30.7705 8.2383 6.09391 7.46355C6.66089 7.39898 7.21686 7.33439 7.72427 7.27629C12.0891 6.79206 16.5487 6.5532 20.9411 6.16582C34.9213 4.93912 48.9875 4.16436 63.0692 3.42188C80.5417 2.49217 98.7752 1.69158 117.152 1.31711C123.726 1.37522 130.279 1.43335 136.831 1.50437C151.005 1.65933 165.246 2.11127 179.387 2.71816C183.645 2.9054 187.902 3.09907 192.16 3.26694C193.572 3.32504 197.212 3.49288 197.72 3.47997C198.348 3.46705 198.47 3.15718 198.481 3.10553C198.514 2.98931 198.492 2.8279 198.183 2.69231C198.15 2.67295 197.951 2.60834 197.51 2.5696C171.798 0.284066 144.343 -0.0967975 117.174 0.45199C88.5168 0.213106 59.749 0.109757 31.1643 0C30.7551 0 30.4208 0.193718 30.4175 0.432602C30.4153 0.671486 30.7451 0.86521 31.1543 0.871666C51.8521 0.949142 72.6548 1.02657 93.4364 1.14924Z' fill='%232A7AE2'/></svg>") no-repeat;
+  background-size: cover;
+}
+
+
+
+.right .right-wrapper p {
+  color: #0077ffc3;
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+
+@media (max-width:705px) {
+  .teach .main-img{
+    width: 500px;
+  }
+  .teach .down-img{
+    width: 100px;
+    height: 100px;
+  }
+  
+}
+@media (max-width:595px) {
+  .teach .main-img{
+    width: 400px;
+  }
+  
+}
+
+@media (max-width:505px) {
+  .teach .right-img{
+    top: 0;
+    transform: translateY(-50%);
+    right: 50%;
+  }
+  
+}
+
+/*learners section*/
+
+.learners{
+  background: linear-gradient(to bottom, white 0%, rgb(214, 214, 214) 30%);
+}
+
+
+
+.learners .right-img{
+  background-image: url("../../assets/images/mockups.png");
+  
+  background-position:  center;
+  background-size: cover;
+  width: 100%;
+  height: 600px;
+  position: relative;
+}
+
+
+.learners .left-content {
+  box-shadow: 4px 4px 16px #c3deff;
+}
+
+.learners .round-icon{
+  background: linear-gradient(#3881F2,#3BBAEE);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cloud{
+  object-fit: ;
+}
+
+

@@ -1,0 +1,32 @@
+.description-btn.clicked svg{
+    transform: rotate(90deg);
+
+}
+
+textarea:focus{
+    outline: none;
+}
+.lesson li{
+    padding: 16px;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+.lesson li:hover{
+    background-color: #dbebff;
+}
+
+.selected-course{
+    background-color: #b7b6ff74;
+}
+.selected-course:hover{
+    background-color: #b7b6ff74!important
+}
+
+.selected-course div{
+    background-color: #3531ff;
+}
+
+.overlay-course-page{
+    background-color: rgba(0, 0, 0, 0.229);
+}

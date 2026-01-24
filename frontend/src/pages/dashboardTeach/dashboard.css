@@ -22,3 +22,15 @@
     justify-content: center;
 }
 
+@media (max-width:640px) {
+    .account{
+        width: 30px;
+        height: 30px;
+    }
+
+    .account p{
+        font-size: 12px;
+    }
+    
+}
+
