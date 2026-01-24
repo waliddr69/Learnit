@@ -1,9 +1,9 @@
 import Footer from "@/components/footer/footer";
 import Header from "@/components/header/header";
 import PayementInfo from "@/components/payementInfo/payementInfo";
-import { CreditCard, Eye, EyeClosed, Mail, Phone } from "lucide-react";
+import { CreditCard, Mail, Phone } from "lucide-react";
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 
 function Payement(){
     
@@ -29,7 +29,7 @@ function Payement(){
           setDisabled(true);
         }
       }
-      const navigate = useNavigate();
+      
     return(
         <><Header /><main className="bg-[#dbebff]  relative h-fit sm:p-4 sm:pb-20 pb-20">
 

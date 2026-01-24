@@ -2,7 +2,7 @@ import React from "react";
 import ReactApexChart from "react-apexcharts";
 
  const ColumnChart = () => {
-        const [state, setState] = React.useState({
+        const [state, _setState] = React.useState({
           
             series: [{
               data: [21, 22, 10, 28, 16, 21, 13, 30]

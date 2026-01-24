@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+
 import Message from "../../message/message";
 import "./messages.css"
-import { Send } from 'lucide-react';
-import { ArrowLeft } from 'lucide-react';
+
 import { useNavigate } from "react-router-dom";
 
 function Messages(){

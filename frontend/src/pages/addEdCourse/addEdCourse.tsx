@@ -14,7 +14,7 @@ function AddEdCourse(){
     const [selected,setSelected] = useState<String>("");
     const [category, setCategory] = useState<string>("");
     const [subcategory, setSubcategory] = useState<string>("");
-    const [difficulty, setDifficulty] = useState<string>("");
+    
     const [payement, setPayement] = useState<string>("");
     const [preview, setPreview] = useState<string>("");
     const [apercu, setApercu] = useState<string>("");

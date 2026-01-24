@@ -4,7 +4,7 @@ import vid2 from "../../assets/videos/9b147532-6cd6-4c07-8be4-5aa3b8991757.mp4";
 import img1 from "../../assets/images/guys.jpg";
 import img2 from "../../assets/images/girlWIthPc.jpg";
 import Search from "../search/search";
-import SplitText from "gsap-trial/SplitText";
+import SplitText from "gsap/src/SplitText";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

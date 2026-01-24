@@ -1,8 +1,8 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import NavDashboard from "../../components/dashboardUser/navDashboardUser/navDashboard";
-import UserCard from "../../components/userCard/userCard";
+
 import Footer from "@/components/footer/footer";
-import { useEffect } from "react";
+
 
 
 function DashboardUser(){
