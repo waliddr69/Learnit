@@ -25,17 +25,17 @@ function EducationCourse(){
     const [selected,setSelected] = useState("Overview")
     const [selectedChaps,setSelectedChaps] = useState<String[]>([]);
     return(
-    <><Header /><main className="flex flex-col gap-6 p-5 pb-20 bg-[#dbebff]  ">
+    <><Header /><main className="flex flex-col gap-6 md:p-5 pb-20 bg-[#dbebff]  ">
 
             <div className="first-level-content relative flex gap-6">
-                <div className="left lg:w-[70%] md:w-full bg-white p-10 rounded-3xl flex flex-col gap-6 shadow-lg border-2 border-[#E1E2F3]">
+                <div className="left lg:w-[70%] md:w-full bg-white p-5 md:p-10 rounded-3xl flex flex-col gap-6 shadow-lg border-2 border-[#E1E2F3]">
                     <div className="flex justify-between lg:hidden items-center">
                       <p style={{color:"#1F1CD9",fontWeight:"600"}}> <span style={{color:"#1f1cd99c"}}>Computer science /</span>  L3 Dev </p>  
                       
                     
                     </div>
-                    <div className="video-wrapper w-full relative h-[500px] border-1 rounded-3xl border-[#E1E2F3]">
-                        <video src={vid} className="intro absolute inset-0 object-cover w-full h-full" poster="C:/Users/dell/Downloads/2245514_9563_2.jpg" controls ></video>
+                    <div className="video-wrapper w-full relative h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] border-1 rounded-3xl border-[#E1E2F3]">
+                        <video src={vid} className="intro absolute inset-0 object-cover w-full h-full" poster="C:/Users/dell/Downloads/2245514_9563_2.jpg" controls></video>
                     </div>
                     
                     <h3 className="text-[#061323]">ML for beginners</h3>
@@ -138,7 +138,7 @@ function EducationCourse(){
                     
                 </div>
             </div>
-            <div className="second-level-content overflow-x-auto min-w-[400px] flex gap-6 w-full bg-white p-10 rounded-3xl flex-col  shadow-lg border-2 border-[#E1E2F3]">
+            <div className="second-level-content overflow-x-auto min-w-[400px] flex gap-6 w-full bg-white p-5 md:p-10 rounded-3xl flex-col  shadow-lg border-2 border-[#E1E2F3]">
                 <div className="select-menu flex justify-between py-2 px-1    rounded-3xl border-[#E1E2F3] border">
                     <div onClick={()=>setSelected("Overview")} className={`item ${selected!="Overview"?"not-selected":"selected"}  not-selected flex w-1/3 items-center py-5 justify-center`}>
                         <p>Overview</p>
@@ -155,7 +155,7 @@ function EducationCourse(){
                 <div >
                    <div className={`overview ${selected == "Overview"?"":"hidden"} flex flex-col gap-6 `}>
                         <div className="flex gap-2 items-center"><Blocks width={30} height={30}/><h5 className="font-semibold">What you'll learn</h5></div>
-                        <div className="learn-course rounded-3xl bg-[#dbebffb1] border-[#E1E2F3] border p-5 grid grid-cols-2">
+                        <div className="learn-course rounded-3xl bg-[#dbebffb1] border-[#E1E2F3] border p-5 grid grid-cols-1 md:grid-cols-2">
                             <div className="first flex flex-col gap-6">
                                 <div className="learn-item flex gap-2 justify-start items-start"><Check color="#00bd2f" className="shrink-0" width={30} height={30}/> <p className="w-[90%]">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum necessitatibus rem doloribus corporis maxime ullam ab rerum enim eligendi pariatur architecto fugiat opti
                                 o molestiae temporibus, atque, hic voluptatem iure reprehenderit!</p></div>
@@ -244,7 +244,7 @@ function EducationCourse(){
                         <div className="flex gap-2 items-center"><MessageSquareQuote width={30} height={30}/><h5 className="font-semibold">Reviews</h5></div>
                         <p className="text-[#006FFF]">270 reviews</p>
                         <div className="overflow-auto" style={{maxHeight:"400px",scrollbarWidth:"none"}}>
-                            <div className="reviews-section flex  flex-row md:grid grid-cols-2 gap-5 relative">
+                            <div className="reviews-section grid-cols-1 grid md:grid-cols-2 gap-5 relative">
                             
                             <Review username={"User"} content={"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit ad illum vero, mollitia culpa iure rem omnis alias illo! Deleniti reiciendis, accusantium perspiciatis quos alias et saepe sed vel nemo?" }/>
                             <Review username={"User"} content={"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit ad illum vero, mollitia culpa iure rem omnis alias illo! Deleniti reiciendis, accusantium perspiciatis quos alias et saepe sed vel nemo?" }/>
