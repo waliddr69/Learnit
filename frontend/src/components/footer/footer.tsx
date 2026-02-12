@@ -1,7 +1,48 @@
 import { domains, domainsEd } from "@/models/domains"
 
 import "./footer.css"
+import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+
+import { useAuth } from "@/context/authContext"
 function Footer(){
+    const navigate = useNavigate()
+    const [role,setRole] = useState("")
+    const {refreshUser} = useAuth()
+    const { user } = useAuth();
+
+    async function refresh(){
+            await refreshUser()
+    }
+
+    useEffect(() => {
+    refreshUser();
+  }, []);
+    useEffect(()=>{
+        
+        if(user){
+            setRole(user.role)
+
+        }else{
+            setRole("GUEST")
+        }
+        console.log("role"+user?.role)
+    },[user])
+
+    const changeRole = ()=>{
+        fetch(import.meta.env.VITE_API_USER_URL + "/changeRole", {
+            method:"PATCH",
+            headers:{"Content-Type":"application/json"},
+            credentials:"include"
+        })
+        .then((res)=>res.json())
+        .then(async res=>{
+            if(res.success){
+                await refreshUser()
+                navigate("/teach/content")
+            }
+        })
+    }
     return(
         <footer>
             <div className="footer-wrapper p-[5%_5%_10px_5%]  flex flex-col gap-10">
@@ -37,7 +78,10 @@ function Footer(){
                         <h6>Teachers</h6>
                         
                         <ul>
-                            <li>Become an instructor</li>
+                            {role==="STUDENT" && <li onClick={changeRole}>Become an instructor</li>}
+                            {role==="GUEST" && <li onClick={()=>navigate("/teach/signup")}>Become an instructor</li>}
+                            {role==="TEACHER" && <li onClick={()=>navigate("/teach/content")}>Go to dashboard</li>}
+                            
                         </ul>
                     </div>
                     <div className="flex flex-col gap-4">

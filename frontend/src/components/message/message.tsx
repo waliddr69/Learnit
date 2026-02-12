@@ -1,20 +1,24 @@
+import type { User } from "@/types/users";
 import "./message.css";
 
 type MessageProps = {
     onClick: ()=>void;
+    user:User
+    lastMessage:string
+
 }
-function Message({onClick}: MessageProps) {
+function Message({onClick,user,lastMessage}: MessageProps) {
   return (
     <>
       <div onClick={onClick} className="message cursor-pointer p-3 flex  justify-between w-full items-center border-b-2 border-[#E1E2F3]">
         <div className="flex flex-row gap-4">
           <div className="sender w-15 h-15  text-white flex justify-center font-bold items-center rounded-full">
-            DW
+            {user.initials}
           </div>
           <div className="flex flex-col justify-between">
-            <h6 className="sender-name">Dari Walid</h6>
+            <h6 className="sender-name">{user.fname} {user.lname}</h6>
             <p className="message-content font-bold">
-              Hello, I need help with my course.
+              {lastMessage}
             </p>
           </div>
         </div>

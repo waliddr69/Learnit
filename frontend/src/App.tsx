@@ -25,42 +25,56 @@ import Account from "./pages/accountPage/account";
 import AddEdCourse from "./pages/addEdCourse/addEdCourse";
 import Education from "./pages/educationPage/educationPage";
 import EducationCourse from "./pages/educationCoursePage/educationCoursePage";
+import ProtectedRoutes from "./auth/protectedRoutes";
+import RoleRoute from "./auth/roleRoutes";
+import PublicRoutes from "./auth/publicRoutes";
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/education" element={<Education />} />
-        <Route path="/course" element={<Course />} />
+        <Route path="/course/:id" element={<Course />} />
         <Route path="/educationCourse" element={<EducationCourse />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/teach/signup" element={<SignupTeach />} />
-        <Route path="/teach/login" element={<LoginTeach />} />
-        <Route path="/teach/createCourse" element={<FirstCourse />} />
-        <Route path="/teach/createEdCourse" element={<AddEdCourse />} />
-        
-        <Route path="/teach" element={<DashboardTeach />}>
-          <Route path="content" element={<Content />} />
-          <Route path="messages" element={<Messages />} />
-          <Route path="messages/id" element={<MessageView />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="content/course" element={<CourseManage />} />
+
+        <Route element={<PublicRoutes />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/teach/signup" element={<SignupTeach />} />
+          <Route path="/teach/login" element={<LoginTeach />} />
         </Route>
-        <Route path="/dashboard" element={<DashboardUser/>}>
-          <Route path="yourLearning" element={<YourLearning />} />
-          <Route path="favorite" element={<Favorite />} />
-          <Route path="messages/id" element={<MessageView />} />
-          <Route path="messages" element={<Messages />} />
-          
+
+        <Route element={<ProtectedRoutes />}>
+          <Route element={<RoleRoute />}>
+          <Route path="/teach/createCourse" element={<FirstCourse />} />
+            <Route path="/teach/createEdCourse" element={<AddEdCourse />} />
+            <Route path="/teach" element={<DashboardTeach />}>
+              
+              <Route path="content" element={<Content />} />
+              <Route path="messages" element={<Messages />} />
+              <Route path="messages/id" element={<MessageView />} />
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="content/:id" element={<CourseManage />} />
+              
+            </Route>
+            <Route path="account" element={<Account />} />
+          </Route>
+
+          <Route path="/dashboard" element={<DashboardUser />}>
+            <Route path="yourLearning" element={<YourLearning />} />
+            <Route path="favorite" element={<Favorite />} />
+            
+            <Route path="messages" element={<Messages />} />
+            <Route path="messages/:id" element={<MessageView />} />
+          </Route>
+          <Route path="enr/:id" element={<LearningCourse />} />
+          <Route path="cart" element={<CartPage />} />
+          <Route path="payement" element={<Payement />} />
         </Route>
-        <Route path="course/chapter1" element={<LearningCourse />} />
-        <Route path="cart" element={<CartPage />} />
-        <Route path="payement" element={<Payement />} />
+
         <Route path="instructor" element={<InstructorPage />} />
-        <Route path="account" element={<Account />} />
       </Routes>
     </Router>
   );

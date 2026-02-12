@@ -1,15 +1,65 @@
 import "./login.css";
-import { Mail } from "lucide-react";
+import { Mail, TriangleAlert } from "lucide-react";
 import { Eye } from "lucide-react";
 import { useRef, useState } from "react";
 import { EyeClosed } from "lucide-react";
 import logo from "../../assets/images/full_logo.svg"
 import { useNavigate } from "react-router-dom";
+import Alert from "@/components/alertMsg/alert";
+import { useAuth } from "@/context/authContext";
 function Login() {
   const [visible, setVisible] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const emailRef = useRef<HTMLInputElement>(null);
   const passRef = useRef<HTMLInputElement>(null);
+  const [color,setColor] = useState("")
+  const [message,setMessage] = useState("")
+  const {refreshUser} = useAuth()
+
+  const handleSubmit = (e:React.FormEvent<HTMLFormElement>)=>{
+    e.preventDefault()
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+
+    
+    const email = formData.get("email")
+    
+    const password = formData.get("pass")
+    if( !email || !password){
+      setMessage("all fields are mandatory!")
+      setColor("rgb(205,61,100)")
+      return
+    }
+
+     fetch(import.meta.env.VITE_API_USER_URL + "/login", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      credentials:"include",
+      body:JSON.stringify({email,password,role:"TEACHER"})
+     })
+     .then((res)=>res.json())
+     .then(async res=>{
+      setMessage(res.message)
+      
+      
+         if(res.success){
+        setColor("green")
+        await refreshUser()
+        navigate("/dashboard/yourLearning")
+      }else{
+        setColor("rgb(205,61,100)")
+      }
+          
+
+      
+     })
+     .catch(err=>console.log(err))
+
+
+    
+  }
+
   function handleDisabled() {
     if (
       passRef.current &&
@@ -30,14 +80,16 @@ function Login() {
       <main className="h-full pt-10 w-full flex justify-center">
         <div className="login  h-fit bg-[#ffffff] border-[#E1E2F3] justify-start py-10 border-2 flex flex-col gap-6 rounded-3xl w-[40%] relative z-10 shadow-lg">
           <h2 className="text-center auth-heading  flex flex-col">
-            <span>Welcome back👋</span> <span>Sign in to continue your learning journey</span>
+            <span>Welcome back👋</span> <span>Log in to continue your learning journey</span>
           </h2>
-          <form action="" className="flex flex-col gap-10 items-center">
+          <Alert message={message} color={color} />
+          
+          <form action="" onSubmit={handleSubmit} className="flex flex-col gap-10 items-center">
             <div className="w-[80%] flex flex-col gap-2">
               <label htmlFor="" className="font-medium text-[#333333]">
                 Email
               </label>
-              <div className="email  flex items-center border-[#cccee7de] rounded-3xl border justify-between p-3">
+              <div className="email  flex items-center border-[#cccee7de] rounded-3xl border-2 justify-between p-3">
                 <input
                   onChange={handleDisabled}
                   ref={emailRef}
@@ -51,13 +103,13 @@ function Login() {
             </div>
             <div className="w-[80%] flex flex-col gap-2">
               <label htmlFor="" className="font-medium text-[#333333]">Password</label>
-              <div className="pass  flex items-center border-[#cccee7de] border rounded-3xl  justify-between p-3">
+              <div className="pass  flex items-center border-[#cccee7de] border-2 rounded-3xl  justify-between p-3">
                 <input
                   onChange={handleDisabled}
                   ref={passRef}
                   type={visible?"text":"password"}
                   placeholder="Enter a secure password ..."
-                  name="email"
+                  name="pass"
                   className=" flex-1"
                 />
                 {visible ? (
@@ -81,7 +133,7 @@ function Login() {
                 disabled ? "disabled" : "cta"
               } w-[80%]  text-[12px] px-2 py-3 shadow-lg  squircle sm:px-12 sm:py-3 sm:text-[16px] md:px-12 md:py-3 md:text-[18px] lg:px-12 lg:py-3 lg:text-[18px] `}
             >
-              Sign up
+              Log in
             </button>
             <p>Don't have an account? <span className="text-[#006EFD] cursor-pointer" onClick={()=>navigate("/signup")}>Sign up</span></p>
           </form>

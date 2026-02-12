@@ -4,6 +4,9 @@ import "./signup.css"
 import logo from "../../assets/images/full_logo.svg"
 import { Eye, EyeClosed, Mail } from "lucide-react";
 import { Airplay } from 'lucide-react';
+import { TriangleAlert } from 'lucide-react';
+import Alert from "@/components/alertMsg/alert";
+import { useAuth } from "@/context/authContext";
 function Signup(){
     const [visible, setVisible] = useState(false);
   const [disabled, setDisabled] = useState(true);
@@ -11,6 +14,51 @@ function Signup(){
   const passRef = useRef<HTMLInputElement>(null);
   const firstRef = useRef<HTMLInputElement>(null);
   const lastRef = useRef<HTMLInputElement>(null);
+  const [color,setColor] = useState("")
+  const [message,setMessage] = useState("")
+  const {refreshUser} = useAuth()
+  const handleSubmit = (e:React.FormEvent<HTMLFormElement>)=>{
+    e.preventDefault()
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    
+    const fname = formData.get("fname")
+    const lname = formData.get("lname")
+    const email = formData.get("email")
+    
+    const password = formData.get("pass")
+    if(!fname || !lname || !email || !password){
+      setMessage("all fields are mandatory!")
+      setColor("rgb(205,61,100)")
+      return
+    }
+
+     fetch(import.meta.env.VITE_API_USER_URL + "/signup", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      credentials:"include",
+      body:JSON.stringify({fname,lname,email,password,role:"STUDENT",initials:fname?.toString().charAt(0).toUpperCase()! + lname?.toString().charAt(0).toUpperCase()})
+     })
+     .then((res)=>res.json())
+     .then(async res=>{
+      setMessage(res.message)
+      if(res.success){
+        setColor("green")
+        await refreshUser()
+        navigate("/dashboard/yourLearning")
+      }else{
+        setColor("rgb(205,61,100)")
+      }
+          
+
+      
+     })
+     .catch(err=>console.log(err))
+
+
+    
+  }
   function handleDisabled() {
     if (
       passRef.current &&
@@ -38,23 +86,25 @@ function Signup(){
                 <h2 className="text-center auth-heading  flex flex-col">
              <span>Hii👋</span><span>Sign up to continue your learning journey</span>
           </h2>
-          <form action="" className="flex flex-col gap-8 items-center ">
+          <Alert message={message} color={color} />
+          
+          <form onSubmit={handleSubmit} action="" className="flex flex-col gap-8 items-center ">
             <div className="w-[80%]  flex gap-6">
                 <div className="flex flex-col gap-2 w-1/2">
                     <label className="font-medium text-[#333333]">First name</label>
-                    <input ref={firstRef} type="text" placeholder="Exp: Dari" className="border fullname w-full border-[#cccee7de]  rounded-3xl   p-3" />
+                    <input ref={firstRef} type="text" name="fname" placeholder="Exp: Dari" className="border-2 fullname w-full border-[#cccee7de]  rounded-3xl   p-3" />
                 </div>
 
                 <div className="flex flex-col gap-2 w-1/2">
                     <label className="font-medium text-[#333333]">Last name</label>
-                    <input ref={lastRef} placeholder="Exp: Walid" type="text" className="border fullname w-full border-[#cccee7de]  rounded-3xl   p-3" />
+                    <input ref={lastRef} placeholder="Exp: Walid" name="lname" type="text" className="border-2 fullname w-full border-[#cccee7de]  rounded-3xl   p-3" />
                 </div>
                 </div>
             <div className="w-[80%] flex flex-col gap-2">
               <label htmlFor="" className="font-medium text-[#333333]">
                 Email
               </label>
-              <div className="email  flex items-center border-[#cccee7de] rounded-3xl border justify-between p-3">
+              <div className="email  flex items-center border-[#cccee7de] rounded-3xl border-2 justify-between p-3">
                 <input
                   onChange={handleDisabled}
                   ref={emailRef}
@@ -68,13 +118,13 @@ function Signup(){
             </div>
             <div className="w-[80%] flex flex-col gap-2">
               <label htmlFor="" className="font-medium text-[#333333]">Password</label>
-              <div className="pass  flex items-center border-[#cccee7de] border rounded-3xl  justify-between p-3">
+              <div className="pass  flex items-center border-[#cccee7de] border-2 rounded-3xl  justify-between p-3">
                 <input
                   onChange={handleDisabled}
                   ref={passRef}
                   type={visible?"text":"password"}
                   placeholder="Enter a secure password ..."
-                  name="email"
+                  name="pass"
                   className=" flex-1"
                 />
                 {visible ? (

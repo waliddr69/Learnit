@@ -19,6 +19,10 @@
     transition: all 0.3s ease-in-out;
 }
 
+.icons img.cart{
+    background-color: #0055ffce;
+}
+
 .card{
     height: 500px;
     transition: all 0.3s ease-in-out;
@@ -42,4 +46,20 @@
     align-items: center;
     justify-content: center;
 
+}
+
+.teacher-img{
+    background-size: cover;
+    background-position: center;
+}
+
+@keyframes heart-bounce {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.2) rotate(-5deg); }
+  60% { transform: scale(1.2) rotate(5deg); }
+  100% { transform: scale(1); }
+}
+
+.heart-bounce {
+  animation: heart-bounce 0.4s ease;
 }

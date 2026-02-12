@@ -30,3 +30,22 @@ textarea:focus{
 .overlay-course-page{
     background-color: rgba(0, 0, 0, 0.229);
 }
+
+.completed-anim{
+    animation: anim 0.6s ease-in-out forwards;
+}
+
+@keyframes anim {
+    0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

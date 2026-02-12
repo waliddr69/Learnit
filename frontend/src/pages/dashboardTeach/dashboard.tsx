@@ -10,6 +10,7 @@ import { Menu } from 'lucide-react';
 import { X } from "lucide-react";
 import Footer from "@/components/footer/footer";
 import PopperItem from "@/components/menuPopper/popper";
+import { useAuth } from "@/context/authContext";
 function DashboardTeach(){
     const navigate = useNavigate();
     const [selected, setSelected] = useState("");
@@ -17,9 +18,26 @@ function DashboardTeach(){
     const [menu, showMenu] = useState(false);
     const popperMenu = useRef<HTMLDivElement|null>(null)
     const location = useLocation()
+    const [initials,setInitials] = useState("") 
+    const [lname,setLname] = useState("") 
+    const [fname,setFname] = useState("")
+    const [photo,setPhoto] = useState("")
+    const { user } = useAuth();
+    
+
+    useEffect(()=>{
+        if(user){
+            setPhoto(user.photo ? `${import.meta.env.VITE_API_FILE_URL}/${user.photo}` : "")
+            setFname(user.fname)
+            setLname(user.lname)
+            setInitials(user.initials)
+        }
+
+    },[])
+    
     useEffect(()=>{
         const path = location.pathname.split("/")[2]
-        console.log(path)
+        
         if(path=="content"){
             setSelected("Content")
         }else if(path=="messages"){
@@ -37,7 +55,7 @@ function DashboardTeach(){
     ]
     
     return(
-        <><main className=" flex bg-[#F7F7F7] flex-row   lg:p-0    h-fit  ">
+        <><main className=" flex bg-[#F7F7F7] flex-row w-full  lg:p-0    h-fit  ">
             
             <div className="menu   pt-12 p-2 bg-black lg:hidden">
                 <Menu color="white" onClick={() => showMenu(true)} size={30} />
@@ -55,7 +73,7 @@ function DashboardTeach(){
                 </div>
             </div>
 
-            <nav className="  flex-col pb-20  gap-20 w-[20%] items-center  pt-6  nav hidden lg:flex">
+            <nav className="  flex-col pb-20  gap-20 shrink-0 w-[20%] items-center  pt-6  nav hidden lg:flex">
                 <div className="flex flex-col w-full gap-20 items-center sticky top-6">
                     <img src={logo} alt="logo" width={50} />
                     <div className="parts flex  flex-col gap-8 w-full justify-center px-1 items-center">
@@ -68,12 +86,12 @@ function DashboardTeach(){
             </nav>
             <div className="flex-1 flex flex-col gap-8 bg-[#F7F7F7] p-8 border-[#E1E2F3] h-full">
                 <div className="header flex justify-between">
-                    <h4 className="welcome">Welcome back, <span>Walid !</span></h4>
-                    <div tabIndex={1} ref={popperMenu} onFocus={()=>popperMenu.current?.classList.add("clickP")} onBlur={()=>popperMenu.current?.classList.remove("clickP")} className="account group relative cursor-pointer" >
+                    <h4 className="welcome">Welcome back, <span>{lname.charAt(0).toUpperCase() + lname.slice(1)} !</span></h4>
+                    <div tabIndex={1} style={{backgroundImage: photo ? `url(${photo})` : undefined}} ref={popperMenu} onFocus={()=>popperMenu.current?.classList.add("clickP")} onBlur={()=>popperMenu.current?.classList.remove("clickP")} className="account group relative cursor-pointer" >
                         <div className="absolute top-full h-3 w-full"></div>
-                        <p className="font-bold">DW</p>
+                        <p className="font-bold">{!photo && initials}</p>
                         <div   className={`top-full border-2 border-[#dbebff] mt-2 transition-all right-full translate-x-10 popper shadow-lg invisible opacity-0 group-hover:opacity-100 group-hover:visible cursor-auto  pb-4 w-[250px] flex flex-col gap-4 absolute rounded-3xl bg-white`}>
-                            <p className="pb-2 text-lg mt-4 mx-4 font-semibold text-black border-b">Dari Walid</p>
+                            <p className="pb-2 text-lg mt-4 mx-4 font-semibold text-black border-b">{fname} {lname}</p>
                             <div className="content flex flex-col">
                                 {popper.map(i=>{
                                     return <PopperItem to={i.to} name={i.name} Icon={i.icon}/>
@@ -83,7 +101,7 @@ function DashboardTeach(){
                     </div>
                 </div>
 
-                <div className="components">
+                <div className="components w-full">
                     <Outlet />
                 </div>
 

@@ -5,13 +5,34 @@ import { Target } from 'lucide-react';
 import { useEffect, useRef, useState } from "react";
 import persona from "../../../assets/images/undraw_online-learning_tgmv.svg"
 import PopperItem from "@/components/menuPopper/popper";
+
+import { useAuth } from "@/context/authContext";
 function NavDashboard(){
     const [selected, setselected] = useState("")
     const location = useLocation()
+    const [initials,setInitials] = useState("") 
+    const [lname,setLname] = useState("") 
+    const [fname,setFname] = useState("") 
+    const [role,setRole] = useState("") 
+    const [photo,setPhoto] = useState("")
+
+    const { user } = useAuth();
+    useEffect(()=>{
+        if(user){
+           setPhoto(`${user.photo}`)
+           setRole(user.role)
+           setFname(user.fname)
+           setLname(user.lname) 
+           setInitials(user.initials) 
+        }
+    },[user])
+
+    console.log(photo)
+        
     
     useEffect(()=>{
         const path = location.pathname.split("/")[2]
-        console.log(path)
+       
         if(path=="messages"){
             setselected("Messages")
         }else if(path=="favorite"){
@@ -23,12 +44,12 @@ function NavDashboard(){
     const navigate = useNavigate()
     const popperMenu = useRef<HTMLDivElement|null>(null)
     const popper = [
-        
-        {icon:BookOpenText,name:"Courses",to:"/courses"},
-        {icon:Presentation,name:"Instructor dashboard",to:"/teach/content"},
-        {icon:ShoppingCart,name:"Cart",to:"/cart"},
-        {icon:LogOut,name:"Logout",to:"/"}
-    ]
+    {icon: BookOpenText, name: "Courses", to: "/courses"},
+    role === "TEACHER" && {icon: Presentation, name: "Instructor dashboard", to: "/teach/content"},
+    {icon: ShoppingCart, name: "Cart", to: "/cart"},
+    {icon: LogOut, name: "Logout", to: "/"}
+    ].filter(Boolean) as {icon: any, name: string, to:string}[]
+    const hasPhoto = photo && photo !== "null" && photo !== "";
     return(
         <><header className="dashboard-header sticky top-0">
             <nav className="h-full">
@@ -42,13 +63,13 @@ function NavDashboard(){
         <div className="p-4">
             <div className="welcome p-4 ">
                     <div className="header flex justify-between">
-                    <h4 className="welcome">We are happy to see you back, <span>Walid !</span></h4>
-                    <div tabIndex={1} ref={popperMenu} onFocus={()=>popperMenu.current?.classList.add("clickP")} onBlur={()=>popperMenu.current?.classList.remove("clickP")} className="account relative group cursor-pointer">
-                        <p className="font-bold  account">DW</p>
+                    <h4 className="welcome">We are happy to see you back, <span>{lname.charAt(0).toUpperCase() + lname.slice(1)} !</span></h4>
+                    <div tabIndex={1} style={{backgroundImage: hasPhoto ? `url(${import.meta.env.VITE_API_FILE_URL}/${photo})` : ""}} ref={popperMenu} onFocus={()=>popperMenu.current?.classList.add("clickP")} onBlur={()=>popperMenu.current?.classList.remove("clickP")} className="account relative group cursor-pointer">
+                        <p className="font-bold ">{!hasPhoto && initials}</p>
                         <div className="absolute top-full h-3 w-full"></div>
                         
                         <div   className={`top-full border-2 border-[#dbebff] z-1000 mt-2 transition-all right-full translate-x-10 popper shadow-lg invisible opacity-0 group-hover:opacity-100 group-hover:visible cursor-auto  pb-4 w-[250px] flex flex-col gap-4 absolute rounded-3xl bg-white`}>
-                            <p className="pb-2 text-lg mt-4 mx-4 font-semibold text-black border-b">Dari Walid</p>
+                            <p className="pb-2 text-lg mt-4 mx-4 font-semibold text-black border-b">{fname} {lname}</p>
                             <div className="content flex flex-col">
                                 {popper.map(i=>{
                                     return <PopperItem to={i.to} name={i.name} Icon={i.icon}/>

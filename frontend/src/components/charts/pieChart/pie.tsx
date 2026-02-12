@@ -13,39 +13,38 @@ import {
   ChartTooltipContent,
   type ChartConfig,
 } from "@/components/ui/chart"
+import { useEffect, useState } from "react"
 
-const chartData = [
-  { browser: "completed", visitors: 30, fill: "blue" },
-  { browser: "uncompleted", visitors: 70, fill: "#63a9ff" },
-  
-]
+type params={
+  completed:number
+  uncompleted:number
+  total:number,
+  completedC:number
+}
+
+
 const chartConfig = {
   visitors: {
-    label: "Visitors",
-  },
-  chrome: {
-    label: "Chrome",
-    color: "var(--chart-1)",
-  },
-  safari: {
-    label: "Safari",
-    color: "var(--chart-2)",
-  },
-  firefox: {
-    label: "Firefox",
-    color: "var(--chart-3)",
-  },
-  edge: {
-    label: "Edge",
-    color: "var(--chart-4)",
-  },
-  other: {
-    label: "Other",
-    color: "var(--chart-5)",
+    label: "Courses",
   },
 } satisfies ChartConfig
-export function PieChartCompletion() {
+export function PieChartCompletion({completed,uncompleted,total,completedC}:params) {
   
+
+  const [chartData, setChartData] = useState([
+    { name: "completed", visitors: Math.round(completed), fill: "blue" },
+    { name: "uncompleted", visitors: Math.round(uncompleted), fill: "#63a9ff" },
+  ])
+
+   useEffect(() => {
+    setChartData([
+      { name: "completed", visitors: Math.round(completed), fill: "blue" },
+      { name: "uncompleted", visitors: Math.round(uncompleted), fill: "#63a9ff" },
+    ])
+  }, [completed, uncompleted])
+  console.log(completed,uncompleted)
+  
+ 
   return (
     
       <div className="flex flex-col mb-10">
@@ -61,7 +60,7 @@ export function PieChartCompletion() {
           <Pie
             data={chartData}
             dataKey="visitors"
-            nameKey="browser"
+            nameKey="name"
             innerRadius={60}
             strokeWidth={5}
           >
@@ -80,7 +79,7 @@ export function PieChartCompletion() {
                         y={viewBox.cy}
                         className="fill-foreground text-3xl font-bold"
                       >
-                        30%
+                        {completed}%
                       </tspan>
                       <tspan
                         x={viewBox.cx}
@@ -98,7 +97,7 @@ export function PieChartCompletion() {
       </ChartContainer>
     </CardContent><CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 leading-none font-medium">
-          You’ve completed 2 of 6 courses 
+          You’ve completed {completedC} of {total} courses 
         </div>
         
       </CardFooter>
