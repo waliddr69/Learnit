@@ -9,16 +9,14 @@
 
 
 .user-btn{
-    background-color: #3359cb;
+  
     color: white;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
 
-.user-card:hover > .user-btn{
-    background-color: #003fed;
-}
+
 
 .user-btn:hover{
     transform: translateY(-2px);

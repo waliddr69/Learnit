@@ -15,7 +15,7 @@ function TeachCourseCard({ onClick,title,visibility,photo }: TeachCourseCardProp
                 
             </div>
             <div className={`status text-black px-5 ${visibility === "published" ? "bg-[#4CAF50] text-white" : "bg-[#F5BB62]"} rounded-3xl w-[30%] flex  items-center justify-center`}>{visibility}</div>
-            <h5 className="font-semibold">{title}</h5>
+            <h5 className="font-semibold">{title.length>18 ? `${title.substring(0,18)}...` : title}</h5>
             <button onClick={onClick} className="border-2 cursor-pointer hover:bg-[#9dc0ee] transition-all font-semibold border-[#10305A] flex flex-row items-center gap-2 justify-center px-2 py-3  sm:px-12 sm:py-3 sm:text-[16px] md:px-12 md:py-3 md:text-[18px] lg:px-12 lg:py-3 lg:text-[18px] rounded-3xl"><FileCog/> Manage Course</button>
         </div>
     )

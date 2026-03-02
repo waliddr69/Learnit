@@ -21,7 +21,8 @@ function Hero() {
         tl.from(split.words, {
             duration: 0.3,
             y: 100,
-            delay:0.8,
+            ease:"expo.out",
+            delay:0.3,
             stagger: 0.1,
             opacity: 0,
         })
@@ -68,7 +69,7 @@ function Hero() {
         <Search />
         <h1 style={{ textAlign: "center", color: "var(--heading1-color)" }}>
           Algeria’s First Platform for{" "}
-          <span className="typed"><em>Skills & Education</em></span>{" "}
+          <span className="typed"><em>Skills & Education</em></span>
         </h1>
         <p className="subheading">
           Master new skills through structured courses and hands-on exercises.
@@ -76,10 +77,10 @@ function Hero() {
           platform adapts to your pace and learning style.
         </p>
         <div className="btns mt-2 sm:mt-5">
-          <button onClick={()=>navigate("/login")} className="cta cta-hero main-btn text-[12px] px-5 py-3  squircle sm:px-12 sm:py-3 sm:text-[16px] md:px-12 md:py-3 md:text-[18px] lg:px-12 lg:py-3 lg:text-[18px] ">
+          <button onClick={()=>navigate("/login")} className="cta opacity-0 cta-hero main-btn text-[12px] px-5 py-3  squircle sm:px-12 sm:py-3 sm:text-[16px] md:px-12 md:py-3 md:text-[18px] lg:px-12 lg:py-3 lg:text-[18px] ">
             Start Learning
           </button>
-          <button onClick={()=>navigate("/courses")} className="sec sec-hero sec-btn squircle text-[12px] px-5 py-3  sm:px-12 sm:py-3 sm:text-[16px] md:px-12 md:py-3 md:text-[18px] lg:px-12 lg:py-3 lg:text-[18px] ">
+          <button onClick={()=>navigate("/courses")} className="sec opacity-0 sec-hero sec-btn squircle text-[12px] px-5 py-3  sm:px-12 sm:py-3 sm:text-[16px] md:px-12 md:py-3 md:text-[18px] lg:px-12 lg:py-3 lg:text-[18px] ">
             Browse
           </button>
         </div>

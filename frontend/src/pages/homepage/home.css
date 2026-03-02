@@ -259,11 +259,12 @@
 
 /* teach section */
 .teach-content{
-  padding: 0px 5% 150px;
+  padding: 0px 0% 150px;
   width: 100%;
 }
 
 .teach{
+  padding: 0 5%;
   background: radial-gradient( #f6d056 0%,#f6d056 30%,white  60%);
   
 }
@@ -304,6 +305,14 @@
   font-family: "Lyons", serif;
   font-style: italic;
   font-size: 3rem;
+}
+
+@media (max-width:768px) {
+  .teach .right h3 span{
+    font-size: 2rem;
+    margin-top: 8px;
+  }
+
 }
 
 .teach .right h3 span::after{

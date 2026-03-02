@@ -10,6 +10,15 @@
     
     border-right: solid 2px rgba(0,0,0,0.25);
 }
+.profile-pic{
+    background-position: center;
+    background: var(--primary-color);
+    background-size: cover;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 @media (max-width:350px) {
     .instructor-wrapper{

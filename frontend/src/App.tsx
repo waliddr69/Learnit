@@ -28,6 +28,8 @@ import EducationCourse from "./pages/educationCoursePage/educationCoursePage";
 import ProtectedRoutes from "./auth/protectedRoutes";
 import RoleRoute from "./auth/roleRoutes";
 import PublicRoutes from "./auth/publicRoutes";
+import SearchPage from "./pages/searchPage/searchPage";
+import SuccessPay from "./pages/successPayPage/successPay";
 function App() {
   return (
     <Router>
@@ -35,7 +37,7 @@ function App() {
         <Route path="/courses" element={<Courses />} />
         <Route path="/education" element={<Education />} />
         <Route path="/course/:id" element={<Course />} />
-        <Route path="/educationCourse" element={<EducationCourse />} />
+        <Route path="/educationCourse/:id" element={<EducationCourse />} />
 
         <Route element={<PublicRoutes />}>
           <Route path="/" element={<Home />} />
@@ -48,16 +50,14 @@ function App() {
 
         <Route element={<ProtectedRoutes />}>
           <Route element={<RoleRoute />}>
-          <Route path="/teach/createCourse" element={<FirstCourse />} />
+            <Route path="/teach/createCourse" element={<FirstCourse />} />
             <Route path="/teach/createEdCourse" element={<AddEdCourse />} />
             <Route path="/teach" element={<DashboardTeach />}>
-              
               <Route path="content" element={<Content />} />
               <Route path="messages" element={<Messages />} />
-              <Route path="messages/id" element={<MessageView />} />
+              <Route path="messages/:id" element={<MessageView />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="content/:id" element={<CourseManage />} />
-              
             </Route>
             <Route path="account" element={<Account />} />
           </Route>
@@ -65,16 +65,17 @@ function App() {
           <Route path="/dashboard" element={<DashboardUser />}>
             <Route path="yourLearning" element={<YourLearning />} />
             <Route path="favorite" element={<Favorite />} />
-            
+
             <Route path="messages" element={<Messages />} />
             <Route path="messages/:id" element={<MessageView />} />
           </Route>
           <Route path="enr/:id" element={<LearningCourse />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="payement" element={<Payement />} />
+          <Route path="success" element={<SuccessPay />} />
         </Route>
-
-        <Route path="instructor" element={<InstructorPage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="instructor/:id" element={<InstructorPage />} />
       </Routes>
     </Router>
   );

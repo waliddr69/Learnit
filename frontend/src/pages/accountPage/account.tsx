@@ -71,12 +71,16 @@ function Account(){
     formData.append("bio", initial.bio || "");
 
     const allowedImages = ["image/jpeg", "image/png", "image/webp"];
-    if (photoFile && allowedImages.includes(photoFile.type)) {
+
+    
+    if (photoFile) {
+        if (!allowedImages.includes(photoFile.type)) {
+            setMessage("Profile photo must be jpeg, png, or webp");
+            setColor("rgb(205,61,100)");
+            return;
+        }
+
         formData.append("photo", photoFile);
-    }else{
-        setMessage("Profile photo must be an image")
-            setColor("rgb(205,61,100)")
-            return
     }
 
     fetch(import.meta.env.VITE_API_USER_URL + "/update", {
@@ -86,6 +90,7 @@ function Account(){
     })
     .then(res => res.json())
     .then(res => {
+        console.log(res)
         if(res.success) {
             setMessage("Profile updated successfully");
             setColor("green")

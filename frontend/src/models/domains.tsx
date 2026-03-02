@@ -31,7 +31,7 @@ export const DomainsEd = [
   },
   {
     id: "ST",
-    label: "Sciences and technologies",
+    label: "Sciences & technologies",
     subCategories: [
       "1ère Année",
       "2ère Année",

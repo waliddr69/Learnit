@@ -35,10 +35,10 @@ function Messages(){
     return(
         <div className={` messages sm:p-4 flex items-center flex-col gap-12`}>
             <h3 className="self-start ml-4 sm:ml-0">Inbox</h3>
-            <div className={`flex messages flex flex-col gap-4 w-full`}>
+            <div className={`flex messages flex-col gap-4 w-full`}>
                 {messages.length>0 || !messages ? (
-                    messages.map(m=>{
-                        return <Message  user={m.other} onClick={() => navigate("/dashboard/messages/" + (m.conversationId))} lastMessage={m.lastMessage.content}/>
+                    messages.map((m)=>{
+                        return <Message  user={m.other} onClick={() => navigate("/dashboard/messages/" + (m.other.id))} lastMessage={m.lastMessage?.content}/>
                     })
                 ):(
                     <h4 className="text-center font-bold">No messages yet!</h4>

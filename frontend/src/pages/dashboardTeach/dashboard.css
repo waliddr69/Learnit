@@ -1,6 +1,7 @@
 .nav{
     background: #DBEBFF;
     min-height: 100vh;
+    border-right: solid 2px #c3ddfc;
 }
 
 .welcome{

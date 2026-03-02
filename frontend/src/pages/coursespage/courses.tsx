@@ -15,13 +15,21 @@ import Footer from "@/components/footer/footer";
 import type { Courses } from "@/types/courses";
 import MinimumDistanceSlider from "./Slider";
 import type { Likes } from "@/types/likes";
-import { getProfile } from "@/services/authService";
-import type { User } from "@/types/users";
+
 import { useAuth } from "@/context/authContext";
 import { useCart } from "@/context/cartContext";
+import { getLikes } from "@/services/likesService";
+import { useSearchParams } from "react-router-dom";
 function Courses(){
     
-    const [selected,isSelected] = useState("All");
+    const [search] = useSearchParams()
+    const [selected, isSelected] = useState(search.get("domain") ?? "All");
+  useEffect(()=>{
+    if(search.get("domain")){
+        isSelected(search.get("domain")!)
+    }
+  },[search])
+    
     const handleClick = function(){
         const tl = gsap.timeline();
         tl.to(".filter *",{
@@ -118,7 +126,7 @@ function Courses(){
         .then(res=>{
             
             
-            console.log(res.message)
+            
             if(res.success && res.courses){
                 setMessage("")
                 const c = res.courses
@@ -164,20 +172,14 @@ function Courses(){
 
     const [likes,setLikes] = useState<Likes[]>([])
 
-    function getLikes(){
-    fetch(import.meta.env.VITE_API_LIKES_URL + "/getLikes?userId="+id, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-    })
-
-    .then(res=>res.json())
-    .then(res=>{
-        console.log(res)
+    async function get(){
+    
+        const res = await getLikes()
+        
         if(res.success){
             setLikes(res.likes)
         }
-    })
+
     }
 
     const {cart} = useCart()
@@ -192,10 +194,10 @@ function Courses(){
 
     useEffect(()=>{
        
-        if(id>0){
-            getLikes()
-        }
-    },[id])
+        
+        get()
+        
+    },[])
 
     useEffect(()=>{
         
@@ -211,7 +213,7 @@ function Courses(){
     }
      function chackInCart(courseId:number){
         
-        console.log(cart)
+       
         return cart!.some(l => l.courseId === courseId);
         
     }
@@ -238,7 +240,7 @@ function Courses(){
                 <div className="filter-price flex-col flex gap-4 items-center px-4">
                     <p className="font-medium text-lg whitespace-nowrap">Price :</p>
                     <MinimumDistanceSlider min={0} max={price??100} onChange={(range)=>{
-                        console.log(range)
+                        
                         if (range) {
                             setPriceRange(range as [number|undefined, number|undefined])
                         }
@@ -276,6 +278,7 @@ function Courses(){
                     </div>
                 )}
                 <div className="relative flex flex-col mb-20">
+                    
                     {Array.from({ length: parts }).map((_, rowIndex) => {
                         const start = rowIndex * 6;
                         const end = start + 6;
@@ -286,21 +289,21 @@ function Courses(){
                             key={rowIndex}
                             className="courses w-full snap-x py-2 px-4 flex flex-row overflow-x-auto gap-4"
                             >
-                            {rowCourses.map((course: any,i) => (
+                            {rowCourses.map((course: Courses,i) => (
                                 <CoursesCard
                                 key={course.id}
                                 title={course.title}
-                                photo={course.photo}
-                                price={course.price}
-                                difficulty={course.difficulty}
+                                photo={course.photo!}
+                                price={course.price!}
+                                difficulty={course.difficulty!}
                                 liked={checkLikable(course.id)}
                                 inCart={chackInCart(course.id)}
-                                rating={course.rating}
+                                reviewsCs={course.reviewsCs!}
                                 _count={lessons[i]}
-                                creator={course.creator}
-                                cat={course.cat}
-                                domain={course.domain}
-                                subdomain={course.subdomain}
+                                creator={course.creator!}
+                                cat={course.cat!}
+                                domain={course.domain!}
+                                subdomain={course.subdomain!}
                                 id={course.id}
                                 />
                             ))}

@@ -21,7 +21,7 @@ const RatingStars = ({ value, max = 5 }: RatingProps) => {
         );
       })}
       <span className="ml-1 text-sm font-medium text-gray-600">
-        {value.toFixed(1)}
+        {value}
       </span>
     </div>
   );

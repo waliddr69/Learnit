@@ -2,30 +2,33 @@ import { useEffect, useState } from "react";
 import { Plus } from "lucide-react";
 import "./content.css";
 import add from "../../../assets/images/undraw_add-post_prex.svg";
-import education from "../../../assets/images/education.avif";
+import educationn from "../../../assets/images/education.avif";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import TeachCourseCard from "../../teachcoursecard/courseCard";
 import type { Courses } from "@/types/courses";
 function Content() {
   const navigate = useNavigate();
-  const [photo, setPhoto] = useState("");
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState(true);
+  
+  const [contentCourse, setContentCourse] = useState(false);
+  const [contentEducation, setContentEducation] = useState(false);
   const [course,setCourses] = useState<Courses[]>([])
+  const [education,setEducation] = useState<Courses[]>([])
 
   useEffect(() => {
-    fetch(import.meta.env.VITE_API_COURSE_URL + "/getCourses?type=course", {
+    fetch(import.meta.env.VITE_API_COURSE_URL + "/getCourses", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
     })
       .then((res) => res.json())
       .then((res) => {
+        console.log(res)
         if (res.success && res.courses) {
-          setCourses(res.courses)
-        } else {
-          setContent(false);
+          setCourses(res.courses.filter((c: Courses) => c.type === "course"));
+          setEducation(res.courses.filter((c: Courses) => c.type === "education"));
+          setContentCourse(res.courses.filter((c: Courses) => c.type === "course").length > 0);
+          setContentEducation(res.courses.filter((c: Courses) => c.type === "education").length > 0);
         }
       })
       .catch((err) => console.log(err));
@@ -59,7 +62,7 @@ function Content() {
 
       {selected == "Courses" ? (
         <>
-          {!content && <div className="no-content  w-fit bg-white flex-wrap md:flex-nowrap rounded-3xl shadow-lg border-2 p-8 gap-9 jus border-[#E1E2F3] flex">
+          {!contentCourse && <div className="no-content  w-fit bg-white flex-wrap md:flex-nowrap rounded-3xl shadow-lg border-2 p-8 gap-9 jus border-[#E1E2F3] flex">
             <img src={add} alt="add" className="w-[100px] md:w-[200px]" />
             <div className="flex flex-col items-start gap-10 ">
               <h4 className="font-bold">
@@ -78,7 +81,7 @@ function Content() {
             </div>
           </div>}
           
-          {content && <>
+          {contentCourse && <>
           
             <div className="cards flex  flex-row flex-wrap gap-3 overflow-x-auto">
               {course.map((c)=>{
@@ -101,8 +104,8 @@ function Content() {
       ) : (
         //education
         <>
-          <div className="no-content  w-fit bg-white flex-wrap md:flex-nowrap rounded-3xl shadow-lg border-2 p-8 gap-9 jus border-[#E1E2F3] flex">
-            <img src={education} alt="add" className="w-[100px] md:w-[250px]" />
+          {!contentEducation && <div className="no-content  w-fit bg-white flex-wrap md:flex-nowrap rounded-3xl shadow-lg border-2 p-8 gap-9 jus border-[#E1E2F3] flex">
+            <img src={educationn} alt="add" className="w-[100px] md:w-[250px]" />
             <div className="flex flex-col items-start gap-10 ">
               <h4 className="font-bold">
                 You haven’t created any educational courses yet !
@@ -118,11 +121,15 @@ function Content() {
                 Create your first course <ArrowRight />
               </button>
             </div>
-          </div>
-          <div className="cards flex flex-row">
-            <TeachCourseCard
-              onClick={() => navigate("/teach/content/course")}
-            />
+          </div>}
+          <div className="cards flex  flex-row flex-wrap gap-3 overflow-x-auto">
+            {education.map((c)=>{
+              return(
+                <TeachCourseCard
+                  onClick={() => navigate("/teach/content/"+c.id)} key={c.id} photo={c.photo!} title={c.title} visibility={c.visibility} />
+              )
+              })
+            }
           </div>
           <div
             className="add-education flex items-center justify-center rounded-full cursor-pointer shadow-md w-20 h-20"

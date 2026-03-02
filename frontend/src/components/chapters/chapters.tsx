@@ -28,7 +28,7 @@ function Chapters({ id, modify}: params) {
   const [activeChapter, setActiveChapter] = useState<number | null>(null);
   const [chapterinp, showChapterinp] = useState(false);
   const [content, setContent] = useState("");
-  const [contentType, setContentType] = useState<"video" | "pdf">("video");
+  const [contentType, setContentType] = useState<"video" | "pdf" | "">("");
   const [lessoninp, showLessonInp] = useState(false);
   const [chapters, showChapters] = useState<Content[]>([]);
   const [lessonTitle, setLessonTitle] = useState("");
@@ -168,6 +168,7 @@ function Chapters({ id, modify}: params) {
       })
       .then(res=>res.json())
       .then(res=>{
+        console.log(res)
         setMessage(res.message)
         setColor(res.success ? "green" : "red")
         if(res.success){
@@ -192,6 +193,7 @@ function Chapters({ id, modify}: params) {
       lesson.value = "";
       contentInput.value = "";
       setContent("");
+      setContentType("")
       showLessonInp(false);
      
         }

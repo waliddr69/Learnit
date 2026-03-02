@@ -58,6 +58,7 @@ function LearningCourse() {
     );
 
     const res = await req.json();
+    console.log(res)
     if (res.success) {
       setChapters(res.enr[0].course.chapters);
       setEnr(res.enr[0]);
@@ -86,7 +87,9 @@ function LearningCourse() {
     
     if (videoRef.current?.currentTime == videoRef.current?.duration) {
       setProgress((prev) =>
-        Math.max((getLessonIndex(id) / lessons.length) * 100, prev),
+        Number(
+          Math.max((getLessonIndex(id) / lessons.length) * 100, prev).toFixed(1)
+        )
         );
     }
   };
@@ -194,25 +197,21 @@ function LearningCourse() {
             </h3>
             <div className="instructor bg-[#f1f1f1] p-2 rounded-3xl flex flex-col justify-start items-start md:flex-row gap-4 ">
               <div className="flex flex-row shrink-0   gap-2 items-center">
-                <div
-                  className="instructor-photo bg-black rounded-3xl"
-                  style={{
-                    backgroundImage: `url(${
-                      import.meta.env.VITE_API_FILE_URL
-                    }/${enr?.course.creator?.photo})`,
-                    backgroundSize: "cover",
-                  }}
-                ></div>
+                <div className="instructor-photo text-white font-bold text-xl rounded-3xl" style={{backgroundImage: enr?.course?.creator?.photo ? `url(${import.meta.env.VITE_API_FILE_URL}/${enr.course?.creator?.photo})`:undefined}}>
+                  {!enr?.course?.creator?.photo && enr?.course?.creator?.initials}
+                </div>
                 <div className="flex flex-col gap-2">
-                  <p className="text-lg">
+                  <p onClick={()=>navigate("/instructor/"+enr?.course.creator?.id)} className="text-lg">
                     {enr?.course.creator?.fname} {enr?.course.creator?.lname}
                   </p>
                   <div className="stars-rating flex gap-1">
-                    <Star className="fill-yellow-400" stroke="none" />
-                    <Star className="fill-yellow-400" stroke="none" />
-                    <Star className="fill-yellow-400" stroke="none" />
-                    <Star className="fill-yellow-400" stroke="none" />
-                    <Star className="stroke-2 stroke-yellow-400" />
+                      {Array.from({ length: 5 }).map((_v, i) => {
+                      if (i + 1 <= Math.round( enr?.course?.creator?.receivedReviews?.length!>0 ? enr?.course?.creator!.receivedReviews![0].rating! : 0)) {
+                        return <Star className="fill-yellow-400" stroke="none" />;
+                      } else {
+                        return <Star className="stroke-2 stroke-yellow-400" />;
+                      }
+                    })}
                   </div>
                 </div>
               </div>
@@ -225,7 +224,7 @@ function LearningCourse() {
                 onClick={() => setShow(!show)}
                 className={`py-2 ${
                   show ? "clicked" : ""
-                } description-btn  px-3 bg-blue-500 rounded-3xl flex items-center w-fit text-white font-semibold cursor-pointer`}
+                } description-btn  px-3 bg-[#e9e9e9] text-black rounded-3xl flex items-center w-fit font-semibold cursor-pointer`}
               >
                 Description <ChevronRight className="transition-all" />
               </button>

@@ -23,6 +23,9 @@ import Chapters from "../chapters/chapters";
 import CreateCourseForm from "../createForm/createForm";
 import type { enrollements } from "@/types/enrollements";
 
+import type { ReviewsC } from "@/types/reviewsC";
+import type { Comments } from "@/types/comment";
+
 
 function CourseManage() {
   const [reviews, showReviews] = useState(false);
@@ -51,7 +54,7 @@ function CourseManage() {
   const location = useLocation()
   const navigate = useNavigate()
   const id = location.pathname.split("/").pop()
-  const [dataSet,setDataSet] = useState({})
+  const [dataSet,setDataSet] = useState<{ day: string; enroll: number; }[]>([])
   
   function getCourse(){
     
@@ -65,7 +68,7 @@ function CourseManage() {
       if(res.success){
         console.log(res.course)
         setCourse(res.course)
-
+        setComments(res.course.comments)
         const counts: Record<string, number> = {};
 
         (res.course?.enrollements ?? []).forEach((e: enrollements) => {
@@ -78,8 +81,12 @@ function CourseManage() {
           }
         })
 
-        setDataSet(counts)
-        console.log(counts)
+        const dataset = Object.entries(counts).map(([day, enroll]) => ({
+        day,
+        enroll
+        }))
+
+      setDataSet(dataset)
 
         
         
@@ -95,25 +102,31 @@ function CourseManage() {
   
     
   },[id])
+  const [rating,setRating] = useState(0)
+              useEffect(()=>{
+                  if(course?.reviewsCs!.length!>0){
+                      const total = course!.reviewsCs!.reduce((acc,curr:ReviewsC)=>acc+curr.rating,0)
+                      setRating(total/course!.reviewsCs!.length)
+                      return
+                  }
+                  
+                  
+              },[course])
+  const [comments,setComments] = useState<Comments[]>([])
+    const [showComments,setShowComments] = useState<Comments[]>([])
+    const [showIndex,setShowIndex] = useState(6)
+  
+    useEffect(()=>{
+      setShowComments(comments.slice(0,showIndex+1))
+    },[showIndex,comments])
+
+  
 
   const [refresh,setRefresh] = useState(0)
 
   useEffect(()=>{
     getCourse()
   },[refresh])
-
-  
-
-     
-
-      
-
-  
-  
-
-  
-
-  
 
   return (
     <div className="manage flex flex-col gap-12">
@@ -154,7 +167,7 @@ function CourseManage() {
           <><div className="stats flex flex-row flex-wrap lg:flex-nowrap justify-between gap-4">
             <div className="stat-card flex-1 flex flex-col p-4 gap-2 border-2 rounded-3xl border-[#08203e76]">
               <div className="flex flex-row gap-2 items-center">
-                <Users className="bg-[#DBEBFF] p-2 rounded-3xl" size={40} />
+                <Users className="bg-[#e9e9e9] border border-[#c5c5c5] p-2 rounded-3xl" size={40} />
                 <p>Enrollements in this course</p>
               </div>
               <h4 className="font-semibold">{course?.enrollements?.length}</h4>
@@ -162,7 +175,7 @@ function CourseManage() {
             {course?.price!==0 && (
               <div className="stat-card flex-1 flex flex-col p-4 gap-2 border-2 rounded-3xl border-[#08203e76]">
               <div className="flex flex-row gap-2 items-center">
-                <Wallet className="bg-[#F9D6E5] p-2 rounded-3xl" size={40} />
+                <Wallet className="bg-[#e9e9e9] border border-[#c5c5c5] p-2 rounded-3xl" size={40} />
                 <p>Revenue in this course</p>
               </div>
               <h4 className="font-semibold">{course?.enrollements?.length! * course?.price!} DA</h4>
@@ -172,11 +185,11 @@ function CourseManage() {
             <div className="stat-card flex-1 flex gap-2 flex-col p-4 border-2 rounded-3xl border-[#08203e76]">
               <div className="flex flex-row gap-2 items-center">
                 <div className="rounded-3xl overflow-hidden">
-                  <MessageSquareQuote className="bg-[#D5F3F0] p-2 " size={40} />
+                  <MessageSquareQuote className="bg-[#e9e9e9] border rounded-full border-[#c5c5c5] p-2 " size={40} />
                 </div>
                 <p>Total reviews</p>
               </div>
-              <h4 className="font-semibold">278</h4>
+              <h4 className="font-semibold">{course?.comments?.length}</h4>
               <button
                 className="view-link cursor-pointer self-end"
                 onClick={() => showReviews(true)}
@@ -184,16 +197,16 @@ function CourseManage() {
                 View &gt;
               </button>
             </div>
-            {course?.rating! > 0 && <div className="stat-card flex-1 flex gap-2 flex-col p-4 border-2 rounded-3xl border-[#08203e76]">
+            {rating > 0 && <div className="stat-card flex-1 flex gap-2 flex-col p-4 border-2 rounded-3xl border-[#08203e76]">
               <div className="flex flex-row gap-2 items-center">
-                <Star className="bg-[#FCEBD2] p-2 rounded-3xl" size={40} />
+                <Star className="bg-[#e9e9e9] border border-[#c5c5c5] p-2 rounded-3xl" size={40} />
                 <p>Course rating</p>
               </div>
-              <h4 className="font-semibold">4.7/5</h4>
+              <h4 className="font-semibold">{rating}/5</h4>
             </div>}
 
           </div><div className="chart">
-              <ApexChart name="Enrollments" data={Object.values(dataSet)} date={Object.keys(dataSet)}/>
+              <ApexChart name="Enrollemnts" data={dataSet}/>
             </div></>
         ):course?.enrollements?.length==0 && course.visibility == "draft"?(
           <h3>Your course is in draft. when ready publish it to get enrollments</h3>
@@ -222,41 +235,31 @@ function CourseManage() {
               onClick={() => showReviews(false)}
             />
           </div>
-          <p className="text-[#006FFF]">270 reviews</p>
+          <p className="text-[#006FFF]">{comments.length} reviews</p>
           <div
             className="overflow-auto"
             style={{ maxHeight: "450px", scrollbarWidth: "none" }}
           >
-            <div className="reviews-section flex  flex-row md:grid grid-cols-2 gap-5 relative">
-              <Review
-                username={"User"}
+            <div className="reviews-section grid-cols-1 grid md:grid-cols-2 gap-5 relative">
+              {showComments.map((c:Comments)=>{
+                return <Review
+                username={c.user.fname+" "+c.user.lname}
                 content={
-                  "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit ad illum vero, mollitia culpa iure rem omnis alias illo! Deleniti reiciendis, accusantium perspiciatis quos alias et saepe sed vel nemo?"
+                  c.content
                 }
+                initials={c.user.initials}
+                photo={c.user.photo}
               />
-              <Review
-                username={"User"}
-                content={
-                  "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit ad illum vero, mollitia culpa iure rem omnis alias illo! Deleniti reiciendis, accusantium perspiciatis quos alias et saepe sed vel nemo?"
-                }
-              />
-              <Review
-                username={"User"}
-                content={
-                  "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit ad illum vero, mollitia culpa iure rem omnis alias illo! Deleniti reiciendis, accusantium perspiciatis quos alias et saepe sed vel nemo?"
-                }
-              />
-              <Review
-                username={"User"}
-                content={
-                  "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit ad illum vero, mollitia culpa iure rem omnis alias illo! Deleniti reiciendis, accusantium perspiciatis quos alias et saepe sed vel nemo?"
-                }
-              />
+              })}
+              
+              
             </div>
             <div className="flex justify-center mt-5 mb-5">
-              <button className="px-6 py-3 rounded-3xl font-bold cursor-pointer text-[#10305A]  hover:outline-2 hover:outline-[#10305A]">
-                Load More
-              </button>
+              {showComments.length!==comments.length && (
+                    <button onClick={()=>setShowIndex(showIndex+6)} className="px-6 py-3 rounded-3xl font-bold cursor-pointer text-[#10305A]  hover:outline-2 hover:outline-[#10305A]">
+                    Load More
+                  </button>
+              )}
             </div>
           </div>
         </div>
@@ -273,7 +276,7 @@ function CourseManage() {
           
         }}
       ></div>
-      {selected == "Students" && <ApexGrid />}
+      {selected == "Students" && <ApexGrid id={Number(id)}/>}
     </div>
     
   );

@@ -79,9 +79,10 @@ function Signup(){
   const navigate = useNavigate();
     return(
         <>
+        <div className=" h-fit">
         <img src={logo} alt="logo" onClick={()=>navigate("/")} className="  w-34 h-auto sm:w-38 md:w-48 lg:w-68 pt-10 pl-10 cursor-pointer" />
-      <main className="h-full pt-10 w-full flex justify-center">
-        <div className="signup  h-fit bg-[#ffffff] border-[#E1E2F3] justify-start py-10 border-2 flex flex-row gap-10 rounded-3xl w-[70%] relative z-10 shadow-lg">
+      <main className="h-full  pt-10 flex-col w-full flex items-center">
+        <div className="signup  h-fit bg-[#ffffff] border-[#4b4b4b4e] justify-start py-10 border flex flex-row gap-10 rounded-md sm:rounded-3xl w-[70%] relative z-10 shadow-lg">
             <div className="left flex flex-col gap-6 w-full lg:w-1/2">
                 <h2 className="text-center auth-heading  flex flex-col">
              <span>Hii👋</span><span>Sign up to continue your learning journey</span>
@@ -89,7 +90,7 @@ function Signup(){
           <Alert message={message} color={color} />
           
           <form onSubmit={handleSubmit} action="" className="flex flex-col gap-8 items-center ">
-            <div className="w-[80%]  flex gap-6">
+            <div className=" w-[95%] sm:w-[80%]  flex gap-6">
                 <div className="flex flex-col gap-2 w-1/2">
                     <label className="font-medium text-[#333333]">First name</label>
                     <input ref={firstRef} type="text" name="fname" placeholder="Exp: Dari" className="border-2 fullname w-full border-[#cccee7de]  rounded-3xl   p-3" />
@@ -100,7 +101,7 @@ function Signup(){
                     <input ref={lastRef} placeholder="Exp: Walid" name="lname" type="text" className="border-2 fullname w-full border-[#cccee7de]  rounded-3xl   p-3" />
                 </div>
                 </div>
-            <div className="w-[80%] flex flex-col gap-2">
+            <div className="w-[95%] sm:w-[80%] flex flex-col gap-2">
               <label htmlFor="" className="font-medium text-[#333333]">
                 Email
               </label>
@@ -116,7 +117,7 @@ function Signup(){
                 <Mail color="#9CA3AF"/>
               </div>
             </div>
-            <div className="w-[80%] flex flex-col gap-2">
+            <div className=" w-[95%] sm:w-[80%] flex flex-col gap-2">
               <label htmlFor="" className="font-medium text-[#333333]">Password</label>
               <div className="pass  flex items-center border-[#cccee7de] border-2 rounded-3xl  justify-between p-3">
                 <input
@@ -146,7 +147,7 @@ function Signup(){
               disabled={disabled}
               className={` ${
                 disabled ? "disabled" : "cta"
-              } w-[80%]  text-[12px] px-2 py-3 shadow-lg  squircle sm:px-12 sm:py-3 sm:text-[16px] md:px-12 md:py-3 md:text-[18px] lg:px-12 lg:py-3 lg:text-[18px] `}
+              } w-[95%] sm:w-[80%]  text-[12px] px-2 py-3 shadow-lg  squircle sm:px-12 sm:py-3 sm:text-[16px] md:px-12 md:py-3 md:text-[18px] lg:px-12 lg:py-3 lg:text-[18px] `}
             >
               Sign up
             </button>
@@ -175,8 +176,10 @@ function Signup(){
             </div>
           
         </div>
+        
       </main>
-      
+      <div className="h-24 w-full"></div>
+      </div>
         <div className="bg w-full h-full"></div>
       
       

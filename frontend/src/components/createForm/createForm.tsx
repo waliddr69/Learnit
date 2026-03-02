@@ -44,6 +44,7 @@ function CreateCourseForm({id,onSuccess}:params) {
     if (!file || !file.type.startsWith("video/")) return;
     if (file.size > 2 * 1024 * 1024) {
       alert("File size exceeds 2MB");
+      return;
     }
     if (file) {
       setApercu(URL.createObjectURL(file));
@@ -54,8 +55,9 @@ function CreateCourseForm({id,onSuccess}:params) {
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file || !file.type.startsWith("image/")) return;
-    if (file.size > 2 * 1024 * 1024) {
-      alert("File size exceeds 2MB");
+    if (file.size > 50 * 1024 * 1024) {
+      alert("File size exceeds 50MB");
+      return;
     }
     if (file) {
       setPreview(URL.createObjectURL(file));
@@ -111,14 +113,14 @@ function CreateCourseForm({id,onSuccess}:params) {
   function handleSubmit(e:FormEvent<HTMLFormElement>){
     e.preventDefault();
     if(visibility=="published"){
-      if(title.trim()=="" || desc.trim()=="" || difficulty.trim()=="" || learn.filter(l=>l.trim()!="").length==0 || payement.trim() =="" || (payement=="premium" && payValue<=0) || !apercu || !preview){
+      if(title.trim()=="" || desc.trim()=="" || (course?.type == "course" && difficulty.trim()=="" ) || learn.filter(l=>l.trim()!="").length==0 || payement.trim() =="" || (payement=="premium" && payValue<=0) || !apercu || !preview){
         setMessage("Please fill all the required fields to publish the course !");
         setColor("red");
         return;
 
     }
 
-    console.log(title,desc,difficulty,learn,payement,payValue)
+    
 
   }
         const f = document.getElementById("form5") as HTMLFormElement
@@ -138,13 +140,13 @@ function CreateCourseForm({id,onSuccess}:params) {
             
             
             formData.append("courseId", id.toString());
-
+            formData.append("type", course?.type!);
             
             formData.append("visibility", visibility);
             
             formData.append("difficulty", difficulty);
             formData.append("title1", title.toString().trim());
-            console.log(formData.get("title"))
+            
             formData.append("description", desc?.toString() ?? "");
             formData.append("payement", payement);
             formData.append("price1", payValue?.toString() ?? "0");
@@ -159,6 +161,7 @@ function CreateCourseForm({id,onSuccess}:params) {
 
         .then(res=>res.json())
         .then(res=>{
+        
             if(res.success){
                 setMessage("course modified successfully")
                 setColor("green")
@@ -312,7 +315,8 @@ function CreateCourseForm({id,onSuccess}:params) {
                   Published
                 </div>
               </div>
-              <div className="form-group flex flex-col gap-2 w-full  ">
+              {course?.type=="course" && (
+                <div className="form-group flex flex-col gap-2 w-full  ">
                 <label htmlFor="" className="text-[#333333] font-bold">
                   Course difficulty
                 </label>
@@ -328,6 +332,8 @@ function CreateCourseForm({id,onSuccess}:params) {
                   <option value="all">Mixed levels</option>
                 </select>
               </div>
+              )}
+              
               
               <div className={` form-group flex  flex-col gap-2 w-full  `}>
                 <p className="text-[#333333] font-bold">
@@ -374,7 +380,7 @@ function CreateCourseForm({id,onSuccess}:params) {
               <Alert message={message} color={color} /> 
               <button
                 
-                className="cta main-btn text-[12px] px-2 py-3  squircle sm:px-12 sm:py-3 sm:text-[16px] md:px-12 md:py-3 md:text-[18px] lg:px-12 lg:py-3 lg:text-[18px] "
+                className={`${course?.type == "course" ? "cta":"cta cta-education"} main-btn text-[12px] px-2 py-3  squircle sm:px-12 sm:py-3 sm:text-[16px] md:px-12 md:py-3 md:text-[18px] lg:px-12 lg:py-3 lg:text-[18px]`}
               >
                 Submit changes
               </button>

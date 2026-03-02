@@ -1,7 +1,7 @@
 import { domains, domainsEd } from "@/models/domains"
 
 import "./footer.css"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 import { useAuth } from "@/context/authContext"
@@ -10,10 +10,16 @@ function Footer(){
     const [role,setRole] = useState("")
     const {refreshUser} = useAuth()
     const { user } = useAuth();
+   
+    const location = useLocation();
 
-    async function refresh(){
-            await refreshUser()
-    }
+  useEffect(() => {
+    
+    window.scrollTo({
+      top: 0,
+      
+    });
+  }, [location]);
 
     useEffect(() => {
     refreshUser();
@@ -54,8 +60,8 @@ function Footer(){
                         <ul>
                         {Object.entries(domains).map(([domain])=>{
                             if(domain!="All"){
-                        return <li>{domain}</li>
-                    }
+                                return <li key={domain} onClick={()=>navigate("/courses?domain="+encodeURIComponent(domain))}>{domain}</li>
+                            }
                         
                     
                         })}
@@ -67,7 +73,7 @@ function Footer(){
                         <ul>
                             {Object.entries(domainsEd).map(([domain])=>{
                             if(domain!="All"){
-                        return <li>{domain}</li>
+                        return <li key={domain} onClick={()=>navigate("/education?domain="+encodeURIComponent(domain))}>{domain}</li>
                     }
                         
                     

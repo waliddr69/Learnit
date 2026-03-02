@@ -1,4 +1,5 @@
 import type { Courses } from "./courses";
+import type { ReviewsI } from "./reviewsI";
 
 export interface User {
   id: number;
@@ -14,4 +15,6 @@ export interface User {
   createdAt: Date;
   updatedAt: Date;
   contents?: Courses[];
+  writtenReviews?: ReviewsI[],
+  receivedReviews?: ReviewsI[]
 }

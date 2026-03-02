@@ -318,7 +318,7 @@ function Home() {
                 <div className="right-img ">
               
                 </div>
-            <div style={{ height: '600px', position: 'relative' }} ref={videoSection} className="overflow-hidden items-center w-[100%] pb-10 left-content flex flex-col rounded-3xl pt-10 ">
+            <div style={{ height: '600px', position: 'relative' }} ref={videoSection} className="overflow-hidden items-center w-[100%] pb-10 left-content flex flex-col rounded-md sm:rounded-3xl pt-10 ">
               <video ref={video} src={sky} autoPlay  className="cloud absolute inset-0 w-full h-full object-cover z-0"></video>
               <div className="flex relative z-10 flex-row items-center gap-8">
                 
@@ -337,7 +337,7 @@ function Home() {
                 />
               </div>
               
-            <button onClick={()=>navigate("/login")}  className="cta relative z-10 main-btn text-[12px] self-center px-2 py-3  squircle sm:px-12 sm:py-3 sm:text-[16px] md:px-12 md:py-3 md:text-[18px] lg:px-12 lg:py-3 flex gap-2 items-center w-fit lg:text-[18px] ">Kickstart your journey <ArrowUpRight strokeWidth={3}/></button>
+            <button onClick={()=>navigate("/signup")}  className="cta relative z-10 main-btn text-[12px] self-center px-2 py-3  squircle sm:px-12 sm:py-3 sm:text-[16px] md:px-12 md:py-3 md:text-[18px] lg:px-12 lg:py-3 flex gap-2 items-center w-fit lg:text-[18px] ">Kickstart your journey <ArrowUpRight strokeWidth={3}/></button>
             </div>
             
             

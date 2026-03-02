@@ -1,6 +1,8 @@
 import type { Cart } from "./cart"
+import type { Comments } from "./comment"
 import type { enrollements } from "./enrollements"
 import type { Likes } from "./likes"
+import type { ReviewsC } from "./reviewsC"
 import type { User } from "./users"
 
 export interface Courses{
@@ -22,6 +24,8 @@ export interface Courses{
   likes?:Likes[]
   enrollements?:enrollements[]
   carts?:Cart[]
+  reviewsCs?:ReviewsC[]
+  comments?:Comments[]
   creator?: User
   duration?: number
   
@@ -30,7 +34,7 @@ export interface Courses{
 export type lesson = {
   id:number,
   name: string;
-  type: "video" | "pdf";
+  type: string;
 };
 export type Content = {
   id:number,

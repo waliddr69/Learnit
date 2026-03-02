@@ -16,9 +16,9 @@ export async function getInbox(){
     return res
 }
 
-export async function getMessages(conversationId:number){
+export async function getMessages(receiverId:number){
     
-    const req = await fetch(import.meta.env.VITE_API_MESSAGES_URL+"/getMessages?conversationId="+conversationId,{
+    const req = await fetch(import.meta.env.VITE_API_MESSAGES_URL+"/getMessages?receiverId="+receiverId,{
         method:"GET",
         headers:{"Content-Type":"application/json"},
         credentials:"include",
@@ -46,4 +46,20 @@ export async function addMessage(conversationId:number,senderId:number,content:s
 
 
     return res
+}
+
+export async function addConvo(receiverId:number,content:string){
+    const req = await fetch(import.meta.env.VITE_API_MESSAGES_URL+"/addConv",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        credentials:"include",
+        body:JSON.stringify({receiverId,content})
+    })
+
+    
+    const res = await req.json()
+
+
+    return res
+
 }

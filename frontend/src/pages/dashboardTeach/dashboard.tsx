@@ -57,9 +57,7 @@ function DashboardTeach(){
     return(
         <><main className=" flex bg-[#F7F7F7] flex-row w-full  lg:p-0    h-fit  ">
             
-            <div className="menu   pt-12 p-2 bg-black lg:hidden">
-                <Menu color="white" onClick={() => showMenu(true)} size={30} />
-            </div>
+           
 
             <div className={`flex ${menu ? "translate-x-0" : "-translate-x-full"} w-[70%] md:w-[35%] items-center lg:hidden transition-all fixed z-50 h-full bg-[#0C2443] flex-col gap-20  p-8`}>
                 <div className="flex justify-end w-full">
@@ -84,9 +82,15 @@ function DashboardTeach(){
                 </div>
 
             </nav>
-            <div className="flex-1 flex flex-col gap-8 bg-[#F7F7F7] p-8 border-[#E1E2F3] h-full">
+            <div className="flex-1 relative flex flex-col gap-8 bg-[#F7F7F7] p-8 border-[#E1E2F3] h-full">
                 <div className="header flex justify-between">
-                    <h4 className="welcome">Welcome back, <span>{lname.charAt(0).toUpperCase() + lname.slice(1)} !</span></h4>
+                <div className="flex gap-2 items-center flex-row">
+                    <div className="menu sticky top-1 h-fit lg:hidden">
+                        <Menu color="black" onClick={() => showMenu(true)} size={20} />
+                    </div>
+                    <h4 className="welcome"> Welcome back, <span>{lname.charAt(0).toUpperCase() + lname.slice(1)} !</span></h4>
+                </div>
+                    
                     <div tabIndex={1} style={{backgroundImage: photo ? `url(${photo})` : undefined}} ref={popperMenu} onFocus={()=>popperMenu.current?.classList.add("clickP")} onBlur={()=>popperMenu.current?.classList.remove("clickP")} className="account group relative cursor-pointer" >
                         <div className="absolute top-full h-3 w-full"></div>
                         <p className="font-bold">{!photo && initials}</p>

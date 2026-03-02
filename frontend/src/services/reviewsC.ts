@@ -13,3 +13,4 @@ export async function addReview(courseId:number,rating:number){
 
     return res
 }
+

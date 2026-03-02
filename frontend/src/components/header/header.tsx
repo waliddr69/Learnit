@@ -148,7 +148,7 @@ function Header() {
             {!user && (
               <button
                 onClick={() => navigate("/login")}
-                className="sec sec-btn squircle text-[12px] py-3  sm:px-12 sm:py-2.5 sm:text-[16px] md:px-12 md:py-2.5 md:text-[18px] lg:px-12 lg:py-2.5 lg:text-[18px] "
+                className="sec hidden sm:block sec-btn squircle text-[12px] py-3  sm:px-12 sm:py-2.5 sm:text-[16px] md:px-12 md:py-2.5 md:text-[18px] lg:px-12 lg:py-2.5 lg:text-[18px] "
               >
                 Log in
               </button>

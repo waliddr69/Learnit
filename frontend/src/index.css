@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -73,7 +73,7 @@
   color: var(--heading1-color);
 }
 .subheading {
-  font-family: "PPFrama", "Poppins", sans-serif;
+  font-family: "PPFrama", "Stack Sans Headline", sans-serif;
   font-weight: regular;
   color: var(--subheading-color);
 }
@@ -85,7 +85,7 @@ html,
   margin: 0;
   scroll-behavior: smooth;
   padding: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: "Stack Sans Headline", sans-serif;
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
@@ -94,7 +94,7 @@ html,
 
 @layer base {
   body {
-    font-family: "Poppins", sans-serif;
+    font-family: "Stack Sans Headline", sans-serif;
   }
 }
 
@@ -108,7 +108,7 @@ html,
 
   border: none;
   cursor: pointer;
-  font-family: "PPFrama", "Poppins", sans-serif;
+  font-family: "PPFrama", "Stack Sans Headline", sans-serif;
 
   letter-spacing: 1rem;
   font-weight: bolder;
@@ -144,7 +144,7 @@ html,
   color: #100d66;
 
   cursor: pointer;
-  font-family: "PPFrama", "Poppins", sans-serif;
+  font-family: "PPFrama", "Stack Sans Headline", sans-serif;
 
   letter-spacing: 1rem;
   font-weight: bolder;
@@ -162,7 +162,7 @@ html,
 }
 
 .subheading{
-    font-family: "PPFrama", "Poppins", sans-serif;
+    font-family: "PPFrama", "Stack Sans Headline", sans-serif;
     font-weight: regular;
     color: var(--subheading-color);
     text-align: center;
@@ -176,12 +176,12 @@ h4{
   font-size: clamp(1.2rem, 2.5vw, 1.728rem);
 }
 h6{
-  font-size:1.2rem;
+  font-size:clamp(0.9rem, 1.4vw, 1.4rem);
 }
 
 h1{
   font-size: 2.986rem;
-  font-family: "Lyons", "Poppins", sans-serif;
+  font-family: "Lyons", "Stack Sans Headline", sans-serif;
 }
 h3{
   font-size: clamp(1.1rem, 2.5vw, 2.078rem);
@@ -191,7 +191,7 @@ h3{
 
 h2{
   font-size: 2.688rem;
-  font-family: "Lyons", "Poppins", sans-serif;
+  font-family: "Lyons", "Stack Sans Headline", sans-serif;
   color: var(--heading1-color);
 }
 
@@ -258,7 +258,7 @@ h2{
 
 @media (min-width:320px) and (max-width:642px) {
   h2{
-    font-size: 1.4rem;
+    font-size: 1.35rem;
   }
 
 }
@@ -269,12 +269,7 @@ h2{
 
 }
 
-@media (min-width:320px) and (max-width:642px) {
-  h2{
-    font-size: 1.7rem;
-  }
 
-}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);

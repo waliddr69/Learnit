@@ -17,10 +17,7 @@ import {
   useEffect,
   useId,
   useState,
-  type JSXElementConstructor,
-  type ReactElement,
-  type ReactNode,
-  type ReactPortal,
+  
 } from "react";
 import { Blocks } from "lucide-react";
 import { Check } from "lucide-react";
@@ -39,6 +36,10 @@ import { useAuth } from "@/context/authContext";
 import { useCart } from "@/context/cartContext";
 import { useCheckout } from "@/context/checkoutContext";
 
+
+import { getComments } from "@/services/commentService";
+import type { Comments } from "@/types/comment";
+
 function Course() {
   const [selected, setSelected] = useState("Overview");
 
@@ -54,13 +55,24 @@ function Course() {
 
   const [color, setColor] = useState("");
   let [diffLabel, setdiff] = useState("");
+  const [userid,setUserId] = useState(0)
+  const {user,refreshUser} = useAuth()
+  
+  useEffect(()=>{
+    refreshUser()
+    
+    if(user){
+      setUserId(user.id)
+    }
+  },[])
   function getCourse() {
-    fetch(import.meta.env.VITE_API_COURSE_URL + "/getContent?id=" + id, {
+    fetch(import.meta.env.VITE_API_COURSE_URL + "/getContent?id=" + id+"&userId="+userid, {
       method: "GET",
       credentials: "include",
     })
       .then((res) => res.json())
       .then((res) => {
+       
         if (res.success) {
           setCourse(res.content);
           const lessonsCount = res.content.chapters.reduce(
@@ -87,20 +99,36 @@ function Course() {
 
           setLessons(lessonsCount);
           const v = res.content?.learn && JSON.parse(res.content.learn);
+          console.log(v)
           setL(v);
           setParts(v && Math.ceil(v.length / 3));
 
           setdiff(diffData[res.content.difficulty]);
           setColor(diffBorder[res.content.difficulty]);
         } else {
-          navigate("/courses");
+          navigate("/dashboard/yourLearning");
         }
       });
   }
-
+  const [reviews,setReviews] = useState<Comments[]>([])
+  const [showReviews,setShowReviews] = useState<Comments[]>([])
+  const [showIndex,setShowIndex] = useState(6)
+  
   useEffect(() => {
-    getCourse();
+    
+    
+    async function getR(){
+      const res = await getComments(Number(id))
+      if(res.success){
+        setReviews(res.reviews)
+      }
+    }
+    getR()
   }, []);
+
+  useEffect(()=>{
+    setShowReviews(reviews.slice(0,showIndex+1))
+  },[showIndex,reviews])
 
  
   const [isLiked, setIsLiked] = useState(false);
@@ -120,7 +148,7 @@ function Course() {
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
+        
         if (res.success) {
           
           setIsLiked(res.likes.some((l: any) => l.courseId == id));
@@ -138,19 +166,12 @@ function Course() {
     setSrc(isIn ? filled : cartt);
   }, [cart]);
 
-  const [userid, setUserId] = useState(0);
-  const { user } = useAuth();
-  function getUser() {
-    if (user) {
-      setUserId(user.id);
-    }
-  }
+  
+
+
 
   useEffect(() => {
-    getUser();
-  }, []);
-
-  useEffect(() => {
+    getCourse();
     if (userid > 0) {
       getLikes();
     }
@@ -309,20 +330,26 @@ function Course() {
               }  p-2 rounded-3xl flex flex-col justify-start items-start md:flex-row gap-4 `}
             >
               <div className="flex flex-row shrink-0   gap-2 items-center">
-                <div className="instructor-photo bg-black rounded-3xl"></div>
+                <div className="instructor-photo text-white font-bold text-xl rounded-3xl" style={{backgroundImage: course?.creator?.photo ? `url(${import.meta.env.VITE_API_FILE_URL}/${course?.creator?.photo})`:undefined}}>
+                  {!course?.creator?.photo && course?.creator?.initials}
+                </div>
                 <div className="flex flex-col gap-2">
-                  <p className="text-lg">
+                  <p className="text-lg cursor-pointer" onClick={()=>navigate("/instructor/"+course?.creator?.id)}>
                     {course?.creator?.fname} {course?.creator?.lname}
                   </p>
-                  <div className="stars-rating flex gap-1">
-                    <Star className="fill-yellow-400" stroke="none" />
-                    <Star className="fill-yellow-400" stroke="none" />
-                    <Star className="fill-yellow-400" stroke="none" />
-                    <Star className="fill-yellow-400" stroke="none" />
-                    <Star className="fill-yellow-400" stroke="none" />
+                    <div className="stars-rating flex gap-1">
+                      {Array.from({ length: 5 }).map((_v, i) => {
+                      if (i + 1 <= Math.round( course?.creator?.receivedReviews?.length!>0 ? course?.creator!.receivedReviews![0].rating! : 0)) {
+                        return <Star className="fill-yellow-400" stroke="none" />;
+                      } else {
+                        return <Star className="stroke-2 stroke-yellow-400" />;
+                      }
+                    })}
+                  </div>
+                  
                   </div>
                 </div>
-              </div>
+              
               {course?.creator?.bio && (
                 <p className="bio self-center">{course.creator.bio}</p>
               )}
@@ -332,8 +359,9 @@ function Course() {
             <div className="course-info hidden md:flex  gap-6 border-2 p-4 border-[#00000061] rounded-3xl items-center justify-between">
               <div className="rating flex  flex-col justify-center  w-[25%] items-center  gap-3 border-r-1">
                 <div className="stars-rating flex gap-1">
+                  
                   {Array.from({ length: 5 }).map((_v, i) => {
-                    if (i + 1 <= Math.round(course?.rating!)) {
+                    if (i + 1 <= Math.round( course?.reviewsCs?.length!>0 ? course?.reviewsCs![0].rating! : 0)) {
                       return <Star className="fill-yellow-400" stroke="none" />;
                     } else {
                       return <Star className="stroke-2 stroke-yellow-400" />;
@@ -341,7 +369,7 @@ function Course() {
                   })}
                 </div>
                 <p>
-                  <span className="text-2xl">{course?.rating}</span>/5
+                  <span className="text-2xl">{course?.reviewsCs?.length!>0 ? course?.reviewsCs![0].rating! : 0}</span>/5
                 </p>
               </div>
               <div className=" flex flex-col gap-3 items-center w-[25%] justify-center border-r-1">
@@ -352,7 +380,7 @@ function Course() {
               </div>
               <div className="enrolled flex flex-col items-center w-[25%] justify-center gap-3 border-r-1">
                 <Users color="#0C2443" width={30} height={30} />
-                <p>1500 Enrolled</p>
+                <p>{course?.enrollements?.length} Enrolled</p>
               </div>
               <div className="duration flex flex-col items-center w-[25%] justify-center gap-3">
                 <Hourglass color="#0C2443" width={30} height={30} />
@@ -449,12 +477,12 @@ function Course() {
               <div className="flex justify-around">
                 <div className="flex flex-col gap-3 items-center">
                   <Star className="fill-yellow-400" stroke="none" />{" "}
-                  <p className="text-[#e0e0e0]">{course?.rating}/5</p>
+                  <p className="text-[#e0e0e0]">{course?.reviewsCs!.length!>0 ? course?.reviewsCs![0].rating!:0}/5</p>
                 </div>
 
                 <div className="enrolled flex flex-col flex-1 items-center w-[25%] justify-center gap-3 ">
                   <Users color="#e0e0e0" width={30} height={30} />
-                  <p className="text-[#e0e0e0]">1500 Enrolled</p>
+                  <p className="text-[#e0e0e0]">{course?.enrollements?.length} Enrolled</p>
                 </div>
               </div>
             </div>
@@ -482,7 +510,7 @@ function Course() {
                   onClick={() => (inCart ? deleteCart() : addCart())}
                   width={50}
                   className={`p-2 ${
-                    inCart ? "cart" : ""
+                    inCart ? "cart" : "bg-white"
                   } cursor-pointer border-2 border-[#10305A] rounded-full`}
                 />
                 <Heart
@@ -554,7 +582,7 @@ function Course() {
                   const start = v * 3;
                   const end = start + 3;
                   const i = l.slice(start, end);
-                  console.log(i, l);
+                  
                   return (
                     <div className="first flex flex-col gap-6">
                       {i &&
@@ -596,41 +624,36 @@ function Course() {
                 <MessageSquareQuote width={30} height={30} />
                 <h5 className="font-semibold">Reviews</h5>
               </div>
-              <p className="text-[#006FFF]">270 reviews</p>
+              <p className="text-[#006FFF]">{reviews.length} reviews</p>
               <div
                 className="overflow-auto"
                 style={{ maxHeight: "400px", scrollbarWidth: "none" }}
               >
                 <div className="reviews-section grid-cols-1 grid md:grid-cols-2 gap-5 relative">
-                  <Review
-                    username={"User"}
+                  {reviews.length>0 ? (
+                    showReviews.map((r:Comments)=>{
+                      return <Review
+                    username={r.user.fname+" "+r.user.lname}
                     content={
-                      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit ad illum vero, mollitia culpa iure rem omnis alias illo! Deleniti reiciendis, accusantium perspiciatis quos alias et saepe sed vel nemo?"
+                      r.content
                     }
+                    photo={r.user.photo}
+                    initials={r.user.initials}
                   />
-                  <Review
-                    username={"User"}
-                    content={
-                      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit ad illum vero, mollitia culpa iure rem omnis alias illo! Deleniti reiciendis, accusantium perspiciatis quos alias et saepe sed vel nemo?"
-                    }
-                  />
-                  <Review
-                    username={"User"}
-                    content={
-                      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit ad illum vero, mollitia culpa iure rem omnis alias illo! Deleniti reiciendis, accusantium perspiciatis quos alias et saepe sed vel nemo?"
-                    }
-                  />
-                  <Review
-                    username={"User"}
-                    content={
-                      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit ad illum vero, mollitia culpa iure rem omnis alias illo! Deleniti reiciendis, accusantium perspiciatis quos alias et saepe sed vel nemo?"
-                    }
-                  />
+                    })
+                  ):(
+                    <h4>No comments !</h4>
+                  )}
+                  
+                  
                 </div>
                 <div className="flex justify-center mt-5 mb-5">
-                  <button className="px-6 py-3 rounded-3xl font-bold cursor-pointer text-[#10305A]  hover:outline-2 hover:outline-[#10305A]">
+                  {showReviews.length!==reviews.length && (
+                    <button onClick={()=>setShowIndex(showIndex+6)} className="px-6 py-3 rounded-3xl font-bold cursor-pointer text-[#10305A]  hover:outline-2 hover:outline-[#10305A]">
                     Load More
                   </button>
+                  )}
+                  
                 </div>
               </div>
             </div>

@@ -3,10 +3,13 @@ import PieChartCompletion from "../../charts/pieChart/pie";
 import UserCard from "../../userCard/userCard";
 import type { enrollements } from "@/types/enrollements";
 import { useNavigate } from "react-router-dom";
+import type { Courses } from "@/types/courses";
 
 function YourLearning(){
 
     const [enr,setEnr] = useState<enrollements[]>([])
+    const [courses,setCourses] = useState<enrollements[]>([])
+    const [educourses,setEduCourses] = useState<enrollements[]>([])
     const [completed,setCompleted] = useState(0)
     const [uncompleted,setUnCompleted] = useState(0)
     async function getEnrollements(){
@@ -18,7 +21,9 @@ function YourLearning(){
         const res = await req.json()
         if(res.success){
             setEnr(res.enr)
-
+            setCourses(res.enr.filter((c:enrollements)=>c.course.type==="course"))
+            
+            setEduCourses(res.enr.filter((c:enrollements)=>c.course.type==="education"))
             setCompleted(Math.round((res.enr.filter((c:enrollements)=>c.progress===100).length*100)/res.enr.length))
             setUnCompleted(Math.round((res.enr.filter((c:enrollements)=>c.progress!==100).length*100)/res.enr.length))
             
@@ -33,7 +38,7 @@ function YourLearning(){
             {enr.length>0?(
                 <><h3 className="font-bold text-2xl mb-4">Your Learning</h3><div className="chart p-8 border-2 border-[#0000003e] rounded-3xl  mb-6 w-full justify-between flex flex-col ">
                     <div>
-                        <h4 className="self-start">Learning Progress</h4>
+                        <h4 className="self-start ">Learning Progress</h4>
 
                     </div>
                     <div className="w-full items-center justify-center flex">
@@ -54,13 +59,31 @@ function YourLearning(){
                         </div>
                     </div>
 
-                </div><div className="overflow-x-auto flex gap-4" style={{ scrollbarWidth: "none" }}>
-                        {enr.map(c => {
-                            return <UserCard isfavorite={false} enr={c} />;
-                        })}
+                </div>
+                {courses.length>0 && (
+                    <>
+                    <h3 className="font-bold text-2xl mb-4">Courses</h3><div className="overflow-x-auto flex gap-4" style={{ scrollbarWidth: "none" }}>
+                            {courses.map(c => {
+                                return <UserCard isfavorite={false} enr={c} />;
+                            })}
 
 
-                    </div></>
+                    </div>
+                    </>
+                )}
+                {educourses.length>0 && (
+                    <>
+                    <h3 className="font-bold mt-10 text-2xl mb-4">Educational courses</h3><div className="overflow-x-auto flex gap-4" style={{ scrollbarWidth: "none" }}>
+                            {educourses.map(c => {
+                                return <UserCard type="education" isfavorite={false} enr={c} />;
+                            })}
+
+
+                    </div>
+                    </>
+                )}
+                
+                    </>
             ):(
                 <h3 className="text-center">You haven't enroll in any courses. <span onClick={()=>navigate("/courses")} style={{textDecoration:"underline",color:"blue",cursor:"pointer"}}>Go check courses </span></h3>
             )}

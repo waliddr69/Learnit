@@ -249,7 +249,7 @@ function FirstCourse(){
                         
                         
                         {Domains.map((domain)=>(
-                            <div key={domain.id} className={`${category==domain.id?"selected-cat":"category"} flex items-center flex-row gap-2`} onClick={()=>setCategory(domain.id)}><Check className={`${category==domain.id?"block":"hidden"}`} color="#04ff00"/> {domain.label}</div>
+                            <div key={domain.id} className={`${category==domain.label?"selected-cat":"category"} flex items-center flex-row gap-2`} onClick={()=>setCategory(domain.label)}><Check className={`${category==domain.label?"block":"hidden"}`} color="#04ff00"/> {domain.label}</div>
                         ))}
                     </div>
                 </div>
@@ -263,7 +263,7 @@ function FirstCourse(){
                 <p className="subheading">This course is in : </p>
                 <div className="flex flex-row gap-8 w-[100%] flex-wrap justify-center lg:w-1/2 lg:flex-nowrap mt-10 ">
                     <div className="categories w-2/3 flex flex-row flex-wrap gap-4">
-                        {Domains.filter((Domain)=>Domain.id==category).map((domain)=>(
+                        {Domains.filter((Domain)=>Domain.label==category).map((domain)=>(
                             domain.subCategories.map((sub)=>(
                                 <div key={sub} onClick={()=>setSubcategory(sub)} className={`${subcategory==sub?"selected-cat":"category"} flex items-center flex-row gap-2`}><Check className={`${subcategory==sub?"block":"hidden"}`} color="#04ff00"/> {sub}</div>
                             ))

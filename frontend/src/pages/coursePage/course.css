@@ -64,6 +64,17 @@
 .chapter svg{
     transition: all 0.2s ease-in-out;
 }
+.instructor-photo{
+    
+    background-position: center;
+    background: var(--primary-color);
+    background-size: cover;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
 .selected-chapter{
     transform: rotate(90deg);
 }
